@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Complaint Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    header {
+      height: 80px;
+      text-align: center;
+      padding: 20px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 24px;
+    }
+
+    #slider-container {
+      position: relative;
+      width: 100vw;
+      height: 85vh;
+      overflow: hidden;
+    }
+    #image-slider {
+      display: flex;
+      transition: transform 1s ease-in-out; /* Slower transition */
+      height: 150%;
+    }
+
+    .slide {
+      flex: 1;
+      min-width: 100vw;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center
+    }
+
+    #login-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      float: left;
+    }
+
+    #eye-button {
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      right: 20px;
+      outline: none;
+      float: left;
+    }
+
+    #eye-icon {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      top: 50%;
+      padding: 12px 22px 0 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #dot-container {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+    }
+
+    .dot {
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      background-color: #bbb;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Online Complaint Portal</h1>
+  </header>
+
+  <div id="slider-container">
+    <div id="image-slider">
+      <div class="slide"><img src="image1.jpg" alt="Slide 1"></div>
+      <div class="slide"><img src="image2.jpg" alt="Slide 2"></div>
+      <div class="slide"><img src="image3.jpg" alt="Slide 3"></div>
+      <div class="slide"><img src="image4.jpg" alt="Slide 3"></div>
+      <div class="slide"><img src="image5.jpeg" alt="Slide 3"></div>
+      <div class="slide"><img src="image6.jpg" alt="Slide 3"></div>
+    </div>
+    <div id="dot-container"></div>
+  </div>
+
+  <div id="login-container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="button" id="eye-button" onclick="togglePasswordVisibility()">
+        <img id="eye-icon" src="eyeh.png" alt="Toggle Password Visibility">
+      </button>
+      <button type="button" onclick="login()">Login</button>
+    </form>
+  </div>
+
+  <script>
+    const slider = document.getElementById('image-slider');
+    const slides = document.querySelectorAll('.slide');
+    const dotContainer = document.getElementById('dot-container');
+    let index = 0;
+
+    function showSlide(n) {
+      index = (n + slides.length) % slides.length;
+      slider.style.transform = `translateX(${-index * 100}%)`;
+      updateDots();
+    }
+
+    function nextSlide() {
+      showSlide(index + 1);
+    }
+
+    function prevSlide() {
+      showSlide(index - 1);
+    }
+
+    function updateDots() {
+      dotContainer.innerHTML = '';
+      for (let i = 0; i < slides.length; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === index) {
+          dot.classList.add('active');
+        }
+        dot.addEventListener('click', () => showSlide(i));
+        dotContainer.appendChild(dot);
+      }
+    }
+    setInterval(nextSlide, 8000);
+
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eye-icon');
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.src = 'eyeo.png'; // Replace with the URL of the open eye icon
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.src = 'eyeh.png'; // Replace with the URL of the closed eye icon
+      }
+    }
+
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === 'Neel2002' && password === 'Neel@2002') {
+        window.location.href = 'policefir.html';
+      } else if (username === '' || password === '') {
+        alert('Please enter both username and password.');
+      } else {
+        alert('Incorrect username or password. Please try again.');
+      }
+    }
+  </script>
+</body>
+</html>
