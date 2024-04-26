@@ -71,7 +71,7 @@ submitBtn.addEventListener('click', function (event) {
     Email.send({
       Host: "smtp.elasticemail.com",
       Username: "neelbhattacharjee09@gmail.com",
-      Password: "BCBDE07EF1706686982B4F650A4F7EC1D1D6",
+      Password: "81867AF96829CFF18E7CD059EBD437FC2DAA",
       To: 'neel04735@gmail.com',
       From: "neelbhattacharjee09@gmail.com",
       Subject: "FIR Report",
