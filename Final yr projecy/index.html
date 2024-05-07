@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Complaint Portal</title>
+  <link rel="icon" href="title.logo.png" type="image/png">
+  <link rel="stylesheet" href="Login-page.css">
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+
+<body>
+  
+  <div  id="preloader">
+    <img src="preloader.gif" alt="">
+  </div>
+
+  <header>
+    <h2 id="nav-hed">Welcome to the Online Complaint Portal</h2>
+    <nav>
+      <div class="nav-links">
+        <a class="hover2" href="#">Home</a>
+        <a class="hover2" href="#about-container">About</a>
+        <div class="dropdown" id="service-dropdown">
+          <a class="hover2" href="#" onclick="toggleDropdown()">Service</a>
+          <div class="dropdown-content" id="service-dropdown-content">
+            <a class="hover2" target="_blank" href="PropertyThef.html">Property Theft</a>
+            <a class="hover2" target="_blank" href="Cyber crime.html">Cyber crime</a>
+            <a class="hover2" target="_blank" href="https://112.gov.in/#">Emergency Response</a>
+            <a href="Complaint Tracking.html" class="hover2">Track Complaint </a>
+            <a href="recored.html" class="hover2">Recored Database </a>
+            <!-- Add more options as needed -->
+          </div>
+        </div>
+        <a class="hover2" href="feedback.html">Feedback</a>
+        <a class="hover2" href="#Contact">Support</a>
+        <a  class="hover2" href="register.html" id="loginLink" onclick="checkLogin()">Sign Up</a>
+      </div>
+    </nav>
+    <div id="account-info" class="dropdown">
+      <img src="user.png" alt="Account Image" id="user-img">
+      <span id="username">Username</span>
+      <span id="current-user"></span>
+      <div class="dropdown-content" id="dropdown-content">
+        <span onclick="logout()">Logout</span>
+        <span onclick="Setting()">Setting</span>
+        <!-- Rounded switch -->
+ <label class="switch">
+   <input type="checkbox" class="bTn"> <!-- Adding the class "bTn" to the input for event handling -->
+   <span class="slider round"></span>
+ </label>
+
+      </div>
+    </div>
+    <!-- Rounded switch -->
+  </header>
+
+  <div id="slider-container">
+    <div id="image-slider">
+      <div class="slide "><img src="image1.jpg" alt="Slide 1"></div>
+      <div class="slide "><img src="image2.jpg" alt="Slide 2"></div>
+      <div class="slide"><img src="image3.jpg" alt="Slide 3"></div>
+      <div class="slide"><img src="image4.jpg" alt="Slide 4"></div>
+      <div class="slide"><img src="image5.jpg" alt="Slide 5"></div>
+      <div class="slide"><img src="image6.jpg" alt="Slide 6"></div>
+    </div>
+    <div id="after-slider-bg"></div>
+    <div id="dot-container" class="dot-container"></div>
+  </div>
+
+  <div id="login-container" class="form-container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <input type="text" id="username-input" placeholder="Registered Email / Phone No" required autocomplete="on">
+      <input type="password" id="password"   placeholder="Password" required autocomplete="on">
+      <button type="button" id="eye-button" onclick="togglePasswordVisibility()">
+        <img id="eye-icon" src="eyehide.png" alt="Toggle Password Visibility">
+      </button>
+      <button type="button" onclick="login()">Login</button>
+    </form>
+    <p id="dont-have-account">Don't have an account? 
+      <button onclick="createAccount()" id="create-account-btn">Create Account</button>
+     </p>
+    <button id="new-button" style="display: none;" onclick="someFunction() ">New Button</button>
+  </div>
+  
+    <!-- About Section -->
+  <div id="about-container" class="about-section">
+    <h2>About Us</h2>
+    <p>
+      The online Police FIR System provides users with a convenient platform to report incidents to law enforcement agencies. Users can submit detailed complaints, including personal information and specifics about the incident, such as its type and location. The system's integration of Aadhaar verification adds an extra layer of security and authenticity to the complaints filed. Additionally, users can categorize the incident accurately and provide detailed descriptions, aiding law enforcement in understanding the situation. The option to attach relevant files,images & video further enhances the reporting process. With the potential for automated email notifications, users can stay informed about the status of their complaint, ensuring transparency and efficiency in handling cases.</p>
+    <!-- Add more content as needed -->
+  </div>
+
+    <!-- About Section -->
+    <div id="usermanual-container" class="usermanual-section">
+      <h2> Complaint Filing: Guide</h2>
+      <p>
+        This user manual serves as a concise guide for efficiently filing complaints through our online system. Firstly, users are instructed to log in to their account on the website. Upon logging in, they navigate to the designated "File Complaint" section. Here, they complete a form with accurate details regarding the incident and attach any necessary supporting documents. After reviewing the entered information for accuracy, users simply click the "Submit" button to finalize the complaint submission. Additionally, users can manage their account details, such as updating personal information or changing passwords, as needed. Finally, for any inquiries or assistance during the process, users are encouraged to reach out to our support team.</p>
+      <!-- Add more content as needed -->
+    </div>
+    <section id="Contact" class="headline">
+      <h3>Contact</h3>
+      <p>Get IN Touch</p>
+    </section>
+
+<section class="third-main">
+  <div class="left-box">
+       <div class="contact-logo">
+         <img src="phone-call.png" alt="">
+       <div class="contact-info">
+         <h2 class="left-contact">Contact</h2>
+         <p class="left-id">7070882189</p>
+       </div>
+           </div>
+           <div class="Email-logo">
+               <img src="gmail.png" alt="">
+           <div class="contact-info">
+               <h2>Email</h2>
+               <p id="para">help.complainportal@gmail.com</p>
+           </div>
+        </div>
+          <div class="location-logo">
+                <img src="google-maps.png" alt="">
+           <div class="contact-info">
+                <h2>Location</h2>
+                <p>Global access via our online platform.</p>
+           </div>
+         </div>
+  </div>
+    
+         <div class="right-box">
+            <div class="basic-box">
+               <input class="text-id" type="text" placeholder="Name">
+            </div>
+         <div class="basic-box">
+              <input class="text-email" type="text" placeholder="Email">
+         </div>
+         <div class="basic-box">
+             <input class="text-project" type="text" placeholder="Issue">
+         </div>
+         <div class="basic-box">
+              <textarea class="text-mesg" placeholder="Message"></textarea>
+         </div>
+         <div class="basic-box">
+              <button class="btn2" type="button" onclick="sendEmail()">Send Message</button>
+         </div>
+         </div>
+</section>
+
+ <section class="fourth">
+      <div class="arrow" onclick="scrollToTop()">
+      <img src="up-arrow.png" alt="Scroll to top">
+      </div>
+ </section>
+
+    <footer class="footer">
+      <div class="footer-content">  
+        <!-- Footer content goes here -->
+        <p>&copy; 2024 Online Complaint Portal. All rights reserved.</p>
+        <p>Designed by: Indraneel Bhattacharjee</p>
+      </div>
+    </footer>
+    <audio id="clickSound">
+      <source src="clicksound.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+      
+      <script src="Police-login.js"></script>
+</body>
+</html>
