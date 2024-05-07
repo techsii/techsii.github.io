@@ -1,0 +1,1340 @@
+  body {
+    font-family:"Gill Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image: url( station.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+  }
+
+  .required {
+    color: red;
+    font-size: larger; /* Change the size as needed */
+  }
+  header {
+    height: 110px;
+  position: relative;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 80px 80px;
+    background: linear-gradient(45deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.5) 100%);
+  }
+
+
+  header img {
+    width: 80px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute;
+    left: 20px; /* Adjust position as needed */
+    top: 47%; /* Adjust position as needed */
+    transform: translateY(-50%);
+    z-index: 1; /* Ensure the logo is above other content */
+    padding-bottom: 600px;
+    transition: top 0.5s ease;
+  }
+
+  #navbar.sticky img {
+    top: 10px; /* Adjust top position to keep the logo within the navbar when scrolled */
+  }
+
+  /* Add styles for nav bar------------ */
+
+
+  #navbar.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's above other content */
+  }
+
+
+  /* Adjust styles as needed */
+
+  /* here we style the Nav bar*/
+  #navbar {
+    position: static;
+    top: -100px; /* Initially hide the navbar above the viewport */
+    width: 100%;
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 50px 50px;
+    background: linear-gradient(45deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.5) 100%);
+    transition: top 0.3s; /* Add smooth transition effect */
+  }
+
+  #navbar.visible {
+    position: fixed;
+    top: 0; /* Show the navbar at the top of the viewport when visible class is added */
+  }
+
+  /* Styles for Container 1 */
+  .container1 {
+    max-width: 650px;
+    height: 820px; /* Set a fixed height to make it a square */
+    margin: 20px auto 0; /* Adjust the top margin to create space between header and container */
+    background-color:#ffff669d;; /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+  }
+  /* style the addhare and verify button*/
+  .container1 button#verifyAadhaarBtn {
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Add margin-top to create space */
+  }
+
+  .container1 button#verifyAadhaarBtn:hover {
+    background-color: #0056b3;
+  }
+
+
+
+  /* Styles for Container 2 */
+  .container2 {
+    max-width: 645px;
+    height: 625px; /* Set a fixed height to make it a square */
+    margin: 20px auto; /* Adjust the margin as needed */
+    background-color:#ffff66a8; /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+
+  /* Add additional styles for .form-group2, .form-group3, .form-group4, etc. if needed */
+
+
+  h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 5px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+  label {
+    font-weight: bold;
+  }
+
+  input, textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    margin-top: 13px;
+    display: block;
+    width: 90%;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 5px solid transparent; /* Transparent border */
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow to transition */
+    box-shadow: 0 0 0 3px #000000bc; /* Thick black border using box-shadow */
+  }
+
+  .form-group5 [type="file"] {
+    width: 50%;
+    padding: 10px;
+    border: 5px solid transparent; /* Transparent border */
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow to transition */
+    box-shadow: 0 0 0 3px #000000bc; /* Thick black border using box-shadow */
+  }
+  #incidentImage{
+    margin-bottom: 20px;
+    width: 50%;
+    background-color: white;
+  }
+  #incidentImage2{
+    margin-bottom: 20px;
+    width: 50%;
+    background-color: white;
+  }
+  .upload-icon {
+    position: absolute;
+    top: 8px;
+    right: 398px;
+    background-image: url(upload.gif);
+    width: 45px;
+    height: 40px;
+    background-size: cover;
+  }
+  .upload-icon2 {
+    position: absolute;
+    top: 632px;
+    right: 833px;
+    background-image: url(upload.gif);
+    width: 45px;
+    height: 40px;
+    background-size: cover;
+  }
+
+  
+  /*-------------------footer start--------------------------------------*/
+  .footer {
+    background-color: #33333398;
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+    width: 95%;
+    height: 70px;
+    border-radius: 50px 50px 0  0;
+    margin-top: 30px;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: auto;
+  }
+  .footer p {
+    margin-bottom: 10px;
+  }
+
+
+  /*-------------------footer End-------------*/
+
+  /*-------------------webkit Scrollbar-------------*/
+  ::-webkit-scrollbar{
+    width: 20px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track{
+    background-color:rgba(0, 0, 0, 0.842);
+    width: 20px;
+    
+  }
+  ::-webkit-scrollbar-thumb{
+    height: 5px; /* Adjust the height as needed */
+    background-color: rgba(50, 143, 229, 0.682);
+    border-radius: 10px;
+    border: .5rem solid transparent;
+    background-clip: content-box;
+  }
+  #Maxsize{
+    font-weight: 100;
+    color: red;
+      font-style: italic;
+  }
+
+  /*------------------- Style for Select State Box ----------------*/
+  #state,
+  #district,
+  #incident {
+    width: 94%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff; /* Set background color */
+    font-size: 16px; /* Set font size */
+    color: #333; /* Set text color */
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* For webkit browsers */
+    -moz-appearance: none; /* For firefox */
+  }
+
+  /* Style for Dropdown Options */
+  select option {
+    background-color: #fff; /* Set background color */
+    color: #333; /* Set text color */
+  }
+
+  /* Style for Hover and Focus */
+  select:hover,
+  select:focus {
+    border-color: #007BFF; /* Change border color on hover/focus */
+  }
+
+
+
+  /*-------------------arrow l/R------------------*/
+  .navigation-arrows {
+    position: fixed; /* Fixed position to keep the arrows visible even when scrolling */
+    top: 50%; /* Position vertically in the middle of the viewport */
+    transform: translateY(-50%); /* Center the arrows vertically */
+    left: 10px; /* Adjust the distance from the left edge of the viewport */
+    z-index: 999; /* Ensure the arrows appear above other content */
+
+    /* Optionally, you can add styles for the navigation container */
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    /* padding: 10px; */
+    /* border-radius: 5px; */
+  }
+
+  .navigation-arrows a {
+    display: inline-block; /* Ensure the anchor tags behave as blocks */
+    margin: 5px; /* Add spacing between the arrows */
+  }
+
+  .navigation-arrows img {
+    width: 40px; /* Adjust the width of the arrow images */
+    height: 40px; /* Adjust the height of the arrow images */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    /* Add any additional styles as needed */
+  }
+
+  /* Optionally, you can add hover effects */
+  .navigation-arrows img:hover {
+    opacity: 0.7; /* Reduce opacity on hover */
+    /* Add any other hover effects */
+  }
+  #rightArrowBtn {
+    position: absolute;
+    left: 2870%;
+  }
+
+  /*-----------------------preloader-----------------*/
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 245, 245, 0.599); /* Set background color to whitesmoke */
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 9999;
+}
+
+
+  #preloader img {
+    width: 100px;
+    height: 100px;
+  }
+
+  #overlayloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 245, 245, 0.599); /* Set background color to whitesmoke */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#overlayloader img {
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+}
+
+  
+  /*----------------------Boder add ---------------*/
+  .container1 input[type="text"],input[type="email"],input[type="tel"]{
+    box-shadow: 0 0 0 2px #000000bc;
+    border: 1px solid transparent; 
+  }
+  .container1 {
+    box-shadow: 0 0 0 2px #000000bc;
+    border: 1px solid transparent; 
+  }
+  .form-group select{
+    box-shadow: 0 0 0 2px #000000bc;
+    border: 1px solid transparent;
+  }
+
+  .container2 {
+    box-shadow: 0 0 0 2px #000000bc;
+    border: 1px solid transparent;
+  }
+  .container2 select,
+  .container2 input[type="text"],
+  .container2 textarea {
+    box-shadow: 0 0 0 2px #000000bc;
+    border: 4px solid transparent;
+  }
+  .file-input-container{
+    margin-top:10px ;
+  }
+  .file-input-container2{
+    margin-top:10px ;
+  }
+
+  /*------------Coss button x--------------*/
+  .file-input-container {
+    position: relative;
+  }
+
+  .clear-button {
+    position: absolute;
+    color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: thin;
+    font-size: 20px;
+    z-index: 1;
+    right: 301px;
+    top: 15px;
+  }
+
+  .clear-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .cross-button2 {    color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: thin;
+    font-size: 20px;
+    z-index: 1;
+    right: 301px;
+    top: 14px;
+    margin-left: -29px;
+  }
+
+
+  .cross-button2:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+  }
+
+  /*----------------------Responsive ------------------website-------------------------------------*/
+  @media (min-width: 380px) and (max-width: 760px){
+  
+
+  body {
+    font-family: "Gill Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 268px;
+    background-image: url(Phone.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  header {
+    height: 60px;
+    position: relative;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 60px 60px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+  }
+
+  header img {
+    width: 38px;
+      height: auto;
+      position: absolute;
+      left: 10px;
+      top: 35%;
+      transform: translateY(-50%);
+      z-index: 1;
+      transition: top 0.5s ease;
+  }
+  #navbar.sticky img {
+    top: 10px;
+  }
+
+  #navbar.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  #navbar {
+    position: static;
+    top: -100px;
+    width: 154%;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 50px 50px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+    transition: top 0.3s;
+  }
+
+  #navbar.visible {
+    position: fixed;
+    top: 0;
+  }
+
+
+  header h1{
+    width: 101%;
+    font-size: 26px;
+    margin-top: 36px;
+  }
+  .container1{
+    margin-left: 11px;
+    width: 366px;
+    height: 813px;
+    background: #f5f5f530;
+  }
+  .container2 {
+    width: 146%;
+      margin: 22px auto;
+      padding: 10px;
+      border-radius: 10px;
+      height: 642px;
+      margin-left: 11px;
+      background-color: #f5f5f563;
+  }
+
+  .container1 button#verifyAadhaarBtn {
+    width: 44%;
+      padding: 8px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      height: 44px;
+      border-radius: 22px;
+  }
+  .container2 button#submitBtn{
+    width: 47%;
+      padding: 8px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      height: 44px;
+      border-radius: 22px;
+      margin-top: 44px;
+      margin-left: 20px;
+  }
+
+
+  .container1 button#verifyAadhaarBtn:hover,
+  .container2 button#submitBtn:hover {
+    background-color: #0056b3;
+    
+  }
+  .form-group4{
+    padding: 29px;
+    padding-top: 72px;
+  }
+
+
+  h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 88%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+  }
+
+
+
+  .footer {
+    background-color: #33333398;
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+    width: 132%;
+    height: 70px;
+    border-radius: 50px 50px 0 0;
+    margin-top: 30px;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+
+  ::-webkit-scrollbar {
+    width: 20px;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.842);
+    width: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    height: 5px;
+    background-color: rgba(50, 143, 229, 0.682);
+    border-radius: 10px;
+    border: .5rem solid transparent;
+    background-clip: content-box;
+  }
+
+
+  .navigation-arrows {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    z-index: 999;
+  }
+
+  .navigation-arrows a {
+    display: inline-block;
+    margin: 5px;
+  }
+
+  .navigation-arrows img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
+    
+  }
+  #leftArrowBtn{
+    margin-left: -12px;
+    width: 20px;
+    
+  }
+  #rightArrowBtn{
+    margin-right: 20px;
+  }
+  .navigation-arrows img:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Increase size on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+  }
+
+
+
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 245, 245, 0.599);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #preloader img {
+    width: 100px;
+    height: 100px;
+  }
+
+
+
+  .container1 input[type="text"]
+  input[type="email"],
+  input[type="tel"],
+  .container2 input[type="text"],
+  textarea {
+    box-shadow: 0 0 0 2px #000000bc;
+    border: 1px solid transparent;
+    width: 348px;
+  }
+  input#complainantName{
+    width: 324px;
+  }
+  input#complainantPhone{
+    width: 278px;
+  }
+
+  .container1,
+  .container2 {
+    box-shadow: 0 0 0 2px #000000bc;
+    border: 1px solid transparent;
+  }
+
+  .form-group select,
+  .container2 select {
+    box-shadow: 0 0 0 2px #000000bc;
+    border: 1px solid transparent;
+  }
+
+
+
+  .clear-button {
+    position: absolute;
+    top: 13px;
+      right: 121px;
+      color: black;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 1;
+  }
+
+  .clear-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  #incidentImage{
+    width: 60%;
+  }
+
+
+  }
+  /*----------------------------------Resposive-screen 6.1------------------------------*/
+
+  @media only screen and (min-width: 380px) and (max-width: 428px) {
+    body {
+      font-family: "Gill Sans", sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 90%;
+      width: 267px;
+      background-image: url(Phone.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    header {
+      height: 60px;
+      position: relative;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      border-radius: 0 0 60px 60px;
+      background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+    }
+    
+    header img {
+      width: 39px;
+      height: 34px;
+      top: 39%;
+      transform: translateY(-50%);
+      z-index: 1;
+      transition: top 0.5s ease;
+    }
+    #navbar.sticky img {
+      top: 10px;
+    }
+    
+    #navbar.sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    #navbar {
+      position: static;
+      width: 139%;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      border-radius: 0 0 50px 50px;
+      background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+      transition: top 0.3s;
+    }
+    
+    #navbar.visible {
+      position: fixed;
+      top: 0;
+    }
+    
+    
+    header h1{
+      width: 101%;
+      font-size: 26px;
+      margin-top: 36px;
+    }
+    .container1{
+      margin-left: 24px;
+      width: 314px;
+      height: 813px;
+      background: #f5f5f530;
+    }
+    .container2 {
+      width: 126%;
+      margin: 22px auto;
+      padding: 10px;
+      border-radius: 10px;
+      height: 607px;
+      margin-left: 23px;
+      background-color: #f5f5f563;
+    }
+    
+    .container1 button#verifyAadhaarBtn {
+      width: 44%;
+        padding: 8px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        height: 44px;
+        border-radius: 22px;
+    }
+    .container2 button#submitBtn{
+      width: 47%;
+        padding: 8px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        height: 44px;
+        border-radius: 22px;
+        margin-top: 44px;
+        margin-left: 20px;
+    }
+    
+    
+    .container1 button#verifyAadhaarBtn:hover,
+    .container2 button#submitBtn:hover {
+      background-color: #0056b3;
+      
+    }
+    .form-group4{
+      padding: 29px;
+      padding-top: 72px;
+    }
+    
+    
+    h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      font-weight: bold;
+    }
+    
+    input,
+    textarea,
+    select {
+      width: 88%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    
+    }
+    
+    
+    
+    .footer {
+      background-color: #33333398;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+      width: 116%;
+      height: 70px;
+      border-radius: 50px 50px 0 0;
+      margin-top: 30px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    
+    ::-webkit-scrollbar {
+      width: 20px;
+      height: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.842);
+      width: 20px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      height: 5px;
+      background-color: rgba(50, 143, 229, 0.682);
+      border-radius: 10px;
+      border: .5rem solid transparent;
+      background-clip: content-box;
+    }
+    
+    
+    .navigation-arrows {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+      z-index: 999;
+
+    }
+    
+    .navigation-arrows a {
+      display: inline-block;
+      margin: 5px;
+    }
+    
+    .navigation-arrows img {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
+      
+    }
+    #leftArrowBtn{
+      margin-left: -12px;
+      width: 20px;
+      
+    }
+    #rightArrowBtn {
+      margin-right: 20px;
+    }
+
+    .navigation-arrows img:hover {
+      opacity: 1;
+      transform: scale(1.1); /* Increase size on hover */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+    }
+    
+    
+    
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(245, 245, 245, 0.599);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    #preloader img {
+      width: 100px;
+      height: 100px;
+    }
+    
+    
+    
+    .container1 input[type="text"]
+    input[type="email"],
+    input[type="tel"],
+    .container2 input[type="text"],
+    textarea {
+      box-shadow: 0 0 0 2px #000000bc;
+      border: 1px solid transparent;
+      width: 348px;
+    }
+    input#complainantName{
+      width: 296px;
+    }
+    input#complainantPhone{
+      width: 278px;
+    }
+    .container2 input[type="text"]{
+      box-shadow: 0 0 0 2px #000000bc;
+      border: 1px solid transparent;
+      width: 300px;
+  }
+  .container2   textarea {
+    width: 300px;
+  }
+    .container1,
+    .container2 {
+      box-shadow: 0 0 0 2px #000000bc;
+      border: 1px solid transparent;
+    }
+    
+    .form-group select,
+    .container2 select {
+      box-shadow: 0 0 0 2px #000000bc;
+      border: 1px solid transparent;
+    }
+    
+    
+    
+    .clear-button {
+      position: absolute;
+      top: 13px;
+      right: 71px;
+        color: black;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 20px;
+        z-index: 1;
+    }
+    
+    .clear-button:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    #incidentImage{
+      width: 67%;;
+    }
+  }
+  /*------------------------------------Realme 85g screen---------*/
+  @media screen and (max-width: 1080px) {
+    body {
+      font-family: "Gill Sans", sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 90%;
+      width: 267px;
+      background-image: url(Phone.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    header {
+      height: 60px;
+      position: relative;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      border-radius: 0 0 60px 60px;
+      background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+    }
+    
+    header img {
+      width: 39px;
+      height: 34px;
+      top: 39%;
+      transform: translateY(-50%);
+      z-index: 1;
+      transition: top 0.5s ease;
+    }
+    #navbar.sticky img {
+      top: 10px;
+    }
+    
+    #navbar.sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    #navbar {
+      position: static;
+      width: 139%;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      border-radius: 0 0 50px 50px;
+      background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+      transition: top 0.3s;
+    }
+    
+    #navbar.visible {
+      position: fixed;
+      top: 0;
+    }
+    
+    
+    header h1{
+      width: 101%;
+      font-size: 26px;
+      margin-top: 36px;
+    }
+    .container1{
+      margin-left: 24px;
+      width: 314px;
+      height: 850px;
+      background: #f5f5f530;
+    }
+    .container2 {
+      width: 126%;
+      margin: 22px auto;
+      padding: 10px;
+      border-radius: 10px;
+      height: 850px;
+      margin-left: 23px;
+      background-color: #f5f5f563;
+    }
+    
+    .container1 button#verifyAadhaarBtn {
+      width: 44%;
+        padding: 8px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        height: 44px;
+        border-radius: 22px;
+    }
+    .container2 button#submitBtn{
+      width: 47%;
+        padding: 8px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        height: 44px;
+        border-radius: 22px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    
+    
+    .container1 button#verifyAadhaarBtn:hover,
+    .container2 button#submitBtn:hover {
+      background-color: #0056b3;
+      
+    }
+    .form-group4{
+      padding: 29px;
+      padding-top:  1px;
+    }
+
+    .form-group5{
+      padding: 29px;
+      padding-top:  1px;
+    }
+    
+    h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      font-weight: bold;
+    }
+    
+    input,
+    textarea,
+    select {
+      width: 88%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    
+    }
+    
+    
+    
+    .footer {
+      background-color: #33333398;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+      width: 116%;
+      height: 70px;
+      border-radius: 50px 50px 0 0;
+      margin-top: 30px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    
+    ::-webkit-scrollbar {
+      width: 20px;
+      height: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.842);
+      width: 20px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      height: 5px;
+      background-color: rgba(50, 143, 229, 0.682);
+      border-radius: 10px;
+      border: .5rem solid transparent;
+      background-clip: content-box;
+    }
+    
+    
+    .navigation-arrows {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+      z-index: 999;
+
+    }
+    
+    .navigation-arrows a {
+      display: inline-block;
+      margin: 5px;
+    }
+    
+    .navigation-arrows img {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
+      
+    }
+    #leftArrowBtn{
+      margin-left: -12px;
+      width: 20px;
+      
+    }
+    #rightArrowBtn {
+      margin-right: 20px;
+    }
+
+    .navigation-arrows img:hover {
+      opacity: 1;
+      transform: scale(1.1); /* Increase size on hover */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+    }
+    
+    
+    
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(245, 245, 245, 0.599);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    #preloader img {
+      width: 100px;
+      height: 100px;
+    }
+    
+    
+    
+    .container1 input[type="text"]
+    input[type="email"],
+    input[type="tel"],
+    .container2 input[type="text"],
+    textarea {
+      box-shadow: 0 0 0 2px #000000bc;
+      border: 1px solid transparent;
+      width: 348px;
+    }
+    input#complainantName{
+      width: 296px;
+    }
+    input#complainantPhone{
+      width: 278px;
+    }
+    .container2 input[type="text"]{
+      box-shadow: 0 0 0 2px #000000bc;
+      border: 1px solid transparent;
+      width: 300px;
+  }
+  .container2   textarea {
+    width: 300px;
+  }
+    .container1,
+    .container2 {
+      box-shadow: 0 0 0 2px #000000bc;
+      border: 1px solid transparent;
+    }
+    
+    .form-group select,
+    .container2 select {
+      box-shadow: 0 0 0 2px #000000bc;
+      border: 1px solid transparent;
+    }
+    
+    
+    
+    .clear-button {
+      position: absolute;
+      top: 13px;
+      right: 71px;
+        color: black;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 20px;
+        z-index: 1;
+    }
+    
+    .clear-button:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    #incidentImage{
+      width: 67%;;
+    }
+  }
