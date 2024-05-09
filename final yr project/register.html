@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <link rel="stylesheet" href="register.css">
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+<body>
+  <div  id="preloader">
+    <img src="preloader.gif" alt="">
+  </div>
+
+  <header>
+    <nav>
+      <h1>Create Your Account</h1>
+    </nav>
+    <label class="switch">
+      <input type="checkbox" class="bTn"> <!-- Adding the class "bTn" to the input for event handling -->
+      <span class="slider round"></span>
+    </label>
+  </header>
+
+  <div id="slider-container">
+    <div id="image-slider">
+      <div class="slide"><img src="image1.jpg" alt="Slide 1"></div>
+      <div class="slide"><img src="image2.jpg" alt="Slide 2"></div>
+      <div class="slide"><img src="image3.jpg" alt="Slide 3"></div>
+      <div class="slide"><img src="image4.jpg" alt="Slide 4"></div>
+      <div class="slide"><img src="image5.jpg" alt="Slide 5"></div>
+      <div class="slide"><img src="image6.jpg" alt="Slide 6"></div>
+    </div>
+    <div id="after-slider-bg"></div>
+    <div id="dot-container" class="dot-container"></div>
+  </div>
+
+  <div id="create-account-container" class="form-container">
+    <h2>Create Account</h2>
+    <form id="create-account-form">
+        <!-- Input fields for username, OTP delivery method, phone/email, and send OTP button -->
+        <select id="otp-delivery-method" onchange="toggleVerifyButton()">
+          <option value="email">Email</option>
+          <option value="sms">SMS</option>
+        </select>
+        <input type="text" id="new-username" placeholder="Enter your full name" required >
+        <input type="text" id="phone-email" placeholder="Phone number / Email" required >
+        <button class="hover" id="send-otp-btn" type="button" onclick="sendOTP()">Send OTP</button>
+        <!-- Timer, OTP input, and password fields -->
+        <div id="timer"></div>
+        <input type="text" id="otp" placeholder="Enter OTP" required>
+        <!-- Email verify button -->
+        <button class="hover" id="verify-otp-email-btn" type="button" style="display: none;" onclick="verifyOTPEmail()">Verify OTP (Email)</button>
+        <!-- SMS verify button -->
+        <button class="hover" id="verify-otp-sms-btn" type="button" style="display: none;" onclick="verifyOTPSMS()">Verify OTP (SMS)</button>
+  
+          <!------------------------------------------eye button--------------------------------------->
+          <div id="password-fields" style="display: none;">
+            <div style="position: relative;">
+                <input type="password" id="new-password" placeholder="New Password">
+                <button class="eye-button" type="button" onclick="toggleNewPasswordVisibility()">
+                    <img class="eye-icon" src="eyehide.png" alt="Hide Password" id="toggle-new-password">
+                </button>
+            </div>
+            <div style="position: relative;">
+                <input type="password" id="confirm-password" placeholder="Confirm Password">
+                <button class="eye-button" type="button" onclick="toggleConfirmPasswordVisibility()">
+                    <img class="eye-icon" src="eyehide.png" alt="Hide Password" id="toggle-confirm-password">
+                </button>
+            </div>
+            <button class="hover" type="button" onclick="createAccount()">Create Account</button>
+        </div>        
+    </form>
+  </div>
+  <audio id="clickSound">
+    
+    <source src="clicksound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script src="register.js"></script>
+</body>
+</html>

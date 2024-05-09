@@ -1,0 +1,386 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    background: url('neel.jpg');
+    background-position: center top; /* Position the image at the bottom */
+    background-repeat: no-repeat;
+    background-size: 110vw 110vh; /* Ensure the image covers the entire viewport */
+}
+
+header {
+    position: relative;
+    height: 120px; /* Adjust height as needed */
+   
+    background: linear-gradient(45deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.5) 100%);
+    color: white;
+    text-align: center;
+    padding: 30px;
+    font-size: 24px;
+    z-index: 1; /* Ensure the header is above the slider */
+    box-sizing: border-box;
+    width: 100%;
+    border-bottom: 1px solid #fff;
+    border-radius: 0 0 50px 50px; /* Adjust border-radius for the corners */
+}
+/*------------------------------------------Dark mode on off ------------------------------------*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-top: -50px;
+    margin-left: 90%;
+    top: -13px;
+    visibility: hidden;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .Light {
+    background-color:  rgba(241, 209, 150, 0.532); /* Light mode background color */
+    color: black; /* Text color remains black for better readability */
+  }
+  .Dark {
+    background-color: rgba(0, 0, 0, 0.919);
+    color: white;
+  }
+  .LightHeader {
+    background-color: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+  }
+  
+  .DarkHeader {
+    background: linear-gradient(45deg, rgba(21, 149, 104, 0.5) 0%, rgba(32, 182, 32, 0.8) 50%, rgba(13, 152, 145, 0.5) 100%);
+    color: #000000;
+  }
+  
+header h2 {
+    margin: 37px;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+h2 {
+    margin: 0;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 50px;
+  color: white;
+}
+
+form {
+    max-width: 500px;
+    margin: 58px auto;
+    padding: 20px;
+    background-color: #000000a0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color:rgba(128, 0, 128, 0.663);
+    color: #fff;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button#forgot-password {
+    display: block;
+    margin: -25px 0 0 700px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color:yellowgreen;
+    color: black;
+    cursor: pointer;
+}
+
+button#forgot-password:hover {
+    background-color: #0056b3;
+}
+/* Style for phone-email input field */
+#phone-email-delete{
+    width: 300px;
+    padding: 10px;
+    margin-bottom: -9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-left: 94px;
+}
+
+/*-----------------------preloader-----------------*/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 245, 245, 0.599); /* Set background color to whitesmoke */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  #preloader img {
+    width: 100px;
+    height: 100px;
+  }
+  /*------------------------------Delete account button-----------------------*/
+  #delete-account {
+    display: block;
+    margin: 0 auto;
+    margin-top: 3px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+}
+
+#delete-account:hover {
+    background-color: #e53935; /* Darker red color on hover */
+}
+#current-password-delete {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    width: 300px;
+    transition: border-color 0.3s;
+}
+
+#current-password-delete:focus {
+    outline: none;
+    border-color: #007bff; /* Border color changes on focus */
+}
+
+#current-password-delete::placeholder {
+    color: #999; /* Placeholder text color */
+}
+
+#current-password-delete[type="password"] {
+    font-family: 'Arial', sans-serif; /* Ensure font consistency */
+    margin-left: 19%;
+}
+#username-delete {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 1px;
+    font-size: 16px;
+    width: 300px;
+    transition: border-color 0.3s;
+    display: none;
+    margin-left: 605px;
+    margin-top: 20px;
+}
+
+#username-delete:focus {
+    outline: none;
+    border-color: #007bff; /* Border color changes on focus */
+}
+
+#username-delete::placeholder {
+    color: #999; /* Placeholder text color */
+}
+
+#username-delete[type="text"] {
+    
+    font-family: Arial, sans-serif;
+    margin-left: 95px;
+}
+
+
+.delete-container{
+    background: linear-gradient(45deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.5) 100%);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-left: 489px;
+     max-width: 500px;
+}
+#confirm-delete {
+    display: block;
+    margin: 0 auto;
+    margin-top: 3px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+}
+
+#confirm-delete:hover {
+    background-color: #45a049; /* Darker green on hover */
+    box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2), 0 9px 25px 0 rgba(0,0,0,0.19);
+}
+
+#confirm-delete:active {
+    background-color: #3e8e41; /* Even darker green on click */
+}
+
+
+/* --------------------------------------Responsive Design----------------------------- */
+@media only screen and (max-device-width: 1080px) {
+    body {
+        background: url('suman.jpg');
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 94vh; /* Set height to 100% of the viewport height */
+    }
+    
+    body::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('suman.jpg') center top/cover no-repeat; /* Adjust image properties */
+        z-index: -1; /* Ensure the pseudo-element stays behind the content */
+        border-radius:  50px 50px 0 0; /* Border radius for the bottom corners */
+    }
+    form {
+        padding: 15px;
+    }
+
+    h2 {
+        margin-top: 30px;
+        font-size: 24px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        margin-bottom: 15px;
+        padding: 8px;
+    }
+
+    button[type="submit"],
+    button#forgot-password {
+        padding: 8px;
+        margin-left: -1px;
+    }
+    header {
+        height: 100px;
+        padding: 1px;
+        font-size: 20px;
+    }
+    .delete-container {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    #username-delete,
+    #phone-email-delete,
+    #current-password-delete {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #confirm-delete,
+    #delete-account,
+    #forgot-password {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #delete-account {
+        margin-top: 20px;
+    }
+    #forgot-container {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px; /* Adjust margin-top for spacing */
+    }
+
+    #forgot-password {
+        width: 100%; /* Make the button width 100% */
+    }
+    #username-delete[type="text"] {
+        font-family: Arial, sans-serif;
+        margin-left: 5px;
+    }
+    #current-password-delete[type="password"] {
+        font-family: 'Arial', sans-serif;
+        margin-left: 1%;
+    }
+}

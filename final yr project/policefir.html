@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Police FIR System</title>
+  <link rel="stylesheet" href="main-page.css">
+   <!-- Add the SMTP.js library -->
+   <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <!-- Include Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+</head>
+<body>
+
+  <div  id="preloader">
+    <img src="preloader.gif" alt="">
+  </div>
+
+  <header id="navbar">
+    <img src="logo.png" alt="Logo">
+    <b><h1>Online Complaint Portal</h1></b>
+  </header>
+  <main>
+    <div class="container1">
+      <h2>Complainer Details</h2>
+      <form id="complainantForm" method="post">
+        <div class="form-group">
+          <label for="complainantName">Complainer Name <span class="required">*</span>:</label>
+          <input type="text" id="complainantName">
+        </div>
+
+        <div class="form-group">
+          <label for="complainantEmail">Complainer Email <span class="required">*</span>:</label>
+          <input type="email" id="complainantEmail">
+        </div>
+
+        <div class="form-group">  
+          <label for="complainantPhone">Complainer Phone no. <span class="required">*</span>:</label>
+          <input type="tel" id="complainantPhone">
+        </div>
+
+        <div class="form-group">
+          <label for="state">State <span class="required">*</span>:</label>
+          <select id="state" name="state" onchange="showDistricts()" required>
+        <option value="" selected disabled>Select State</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+    </select>
+</div>
+
+<div class="form-group" id="districtGroup">
+  <label for="district">District <span class="required">*</span>:</label>
+  <select id="district" name="district" required>
+    <option value="" selected disabled>Select District</option>
+  </select>
+</div>
+        
+        <div class="form-group">
+          <label for="addressLine1">Address <span class="required">*</span>:</label>
+          <input type="text" id="addressLine1">
+        </div>
+
+        <div class="form-group">
+          <label for="landmark">Landmark:</label>
+          <input type="text" id="landmark">
+        </div>
+
+        <div class="form-group">
+          <label for="pinCode">Pin Code<span class="required">*</span>:</label>
+          <input type="text" id="pinCode">
+        </div>
+        <div class="form-group">
+          <label for="aadhaar">Aadhaar Number <span class="required">*</span>:</label>
+          <input type="text" id="aadhaar">
+          <button id="verifyAadhaarBtn">Verify Aadhaar</button>
+          <p id="aadhaarValidationMessage"></p>
+        </div>
+      </form>
+    </div>
+    
+    <div class="container2" id="complainantMessageBox">
+      <h2>Incident Details </h2>
+      <form id="incidentForm" method="post">
+        <div class="form-group2">
+          <label for="incident">Incident Type<span class="required">*</span>:</label>
+          <select id="incident">
+            <option value="">Select Incident Type</option>
+            <option value="Theft">Theft</option>
+            <option value="Assault">Assault</option>
+            <option value="Burglary">Burglary</option>
+            <option value="Cybercrime">Cybercrime</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <br>
+
+        <div class="form-group2">
+          <label for="summary">Summary<span class="required">*</span>:</label>
+          <input type="text" id="summary">
+        </div>
+
+        <br>
+        <div class="form-group3">
+          <label for="incidentDescription">Incident Description<span class="required">*</span>:</label>
+          <textarea id="incidentDescription"></textarea>
+        </div><br>
+        
+        <div class="form-group4">
+          <label for="incidentImage" id="lable">Complaint Attachment :</label>
+          <div class="file-input-container">
+              <input type="file" id="incidentImage" accept="image/*,video/mp4,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required multiple>
+              <span class="clear-button" id="clearButton" onclick="clearFileInput(this.previousElementSibling)">✖</span>
+              <span class="upload-icon" id="uploadIcon"></span>
+          </div>
+      </div>
+      
+      <div class="form-group5">
+        <label for="Gov-iD">Attach Govt. Id proof <span class="required">*</span>:</label>
+        <div class="file-input-container2">
+            <input type="file" id="incidentImage2" accept="image/*,video/mp4" required multiple>
+            <span class="cross-button2" id="clearButton" onclick="clearFileInput(this.previousElementSibling)">✖ </span>
+            <span class="upload-icon2" id="uploadIcon2"></span> 
+        </div>
+      </div>
+      <p id="Maxsize"> Attachment size: [Upto 8.0 MB ].</p> 
+      </form>
+        <button id="submitBtn"> Submit </button>
+    </div>
+    
+    <div class="navigation-arrows">
+      <a href="#" id="leftArrowBtn"><img src="left-arrow.png" alt="Left Arrow"></a> <!-- Left arrow button -->
+      <a href="#" id="rightArrowBtn"><img src="right-arrow.png" alt="Right Arrow"></a> <!-- Right arrow button -->
+    </div>
+    
+    <footer class="footer">
+      <div class="footer-content">
+        <!-- Footer content goes here -->
+        <p>&copy; 2024 Online Complaint Portal. All rights reserved.</p>
+        <p>Designed by: Indraneel Bhattacharjee</p>
+      </div>
+    </footer>
+  </main>
+  <audio id="clickSound">
+    <source src="clicksound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script src="police.js"></script>
+
+</body>
+</html>
