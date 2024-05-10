@@ -1,0 +1,907 @@
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, form, caption, tbody, tfoot, thead, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+    {
+        border: 0 none;
+        font: inherit;
+        list-style: none outside none;
+        margin: 0;
+        padding: 0;
+        vertical-align: baseline;
+    }
+    @font-face
+    {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 300;
+        src: local('Open Sans Light'), local('OpenSans-Light'),url(http://themes.googleusercontent.com/static/fonts/opensans/v7/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+    }
+
+    body
+    {
+        margin: 0px;
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 100%; /*background-image: url(../images/bg.jpg);background-repeat: repeat;*/
+    }
+    img
+    {
+        border: none;
+    }
+    .clearDiv
+    {
+        clear: both;
+    }
+    .userBox1
+    {
+        width: 92%;
+        padding: 9px 1% 9px 7%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/userTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+    .emailBox1
+    {
+        width: 92%;
+        padding: 9px 1% 9px 7%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emailTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+    .mobileBox1
+    {
+        width: 92%;
+        padding: 9px 1% 9px 7%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/mobilelTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+    .OTPBox1
+    {
+        width: 92%;
+        padding: 9px 1% 9px 7%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/otpTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+    .emptyBox1
+    {
+        width: 95%;
+        padding: 9px 1% 9px 7%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+    .emptyTextArea
+    {
+        width: 97%;
+        padding: 9px 1% 9px 2%;
+        font-size: 16px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextArea_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+
+    .wrap
+    {
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+    #header {
+        width: 100%;
+        height: 131px;
+        border-bottom: solid 1px #da251c;
+        position: relative; /* Add position relative */
+    }
+    
+    #header .logoBox {
+        width: 20%;
+        height: auto;
+        float: left;
+        text-align: center;
+        position: relative; /* Add position relative */
+        padding: auto;
+    }
+    .logo {
+   margin-left: 80px;
+}
+.logo img{
+    margin-top: 5px;
+}
+
+    #header .rightBox {
+        width: 78%;
+        float: right;
+        position: absolute; /* Change float to absolute */
+        top: 0; /* Align to the top */
+        right: 0; /* Align to the right */
+    }
+    
+    .rightBox img{
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .loginBodyContainer
+    {
+        width: 40%;
+        height: 80%;
+        margin: 30px auto;
+        background-image: url(wheat\ box.png);
+        border-radius: 15px;
+        background-repeat: repeat;
+        background-size: cover;
+        padding-bottom: 5px;
+    }
+    .mainBodyContainer
+    {
+        width: 80%;
+        margin: 30px auto;
+        background-image: url(../images/opac_bg.png);
+        border-radius: 15px;
+        background-repeat: repeat;
+        padding-bottom: 5px;
+    }
+    .courtmoduleBodyContainer
+    {
+        width: 95%;
+        margin: 30px auto;
+        background-image: url(../images/opac_bg.png);
+        border-radius: 15px;
+        background-repeat: repeat;
+        padding-bottom: 5px;
+    }
+    .heading1
+    {
+        width: 93%;
+        padding: 12px 3% 10px 4%;
+        font-family: Verdana, Geneva, sans-serif;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: bold;
+        color: #de2418;
+        border-bottom: solid 1px #CCC;
+    }
+
+    .RLRow1
+    {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #303030;
+    }
+    .RLRow2
+    {
+        width: 80%;
+        margin: 10px auto 20px auto;
+    }
+    .RLRow3
+    {
+        width: 80%;
+        margin: 40px auto 40px auto;
+    }
+    .loginNewUserContainer
+    {
+        width: auto;
+        float: left;
+        padding-top: 10px;
+    }
+    .loginNewUserContainer1
+    {
+        width: auto;
+        float: left;
+        padding-top: 10px;
+        display: none;
+    }
+    .loginBtnContainer
+    {
+        width: auto;
+        float: right;
+    }
+
+    .newUserNav:link, .newUserNav:active, .newUserNav:visited
+    {
+        color: #F00;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .newUserNav:hover
+    {
+        color: #000;
+        text-decoration: none;
+    }
+    .otpTextContainer
+    {
+        width: 70%;
+        float: left;
+        margin-right: 5%;
+    }
+    /*-----New 28/08/14  Code Edit------*/
+    .otpOkIconContainer
+    {
+        width: 5%;
+        float: left;
+        padding-top: 5px;
+    }
+    /*-----New 28/08/14------*/
+    .otpVerifyContainer
+    {
+        width: 15%;
+        float: right;
+        padding-top: 1px;
+    }
+    .aboutContainer
+    {
+        width: 45%;
+        float: left;
+    }
+    .aboutDiv
+    {
+        width: 100%;
+        background-image: url(../images/opac_bg.png);
+        border-radius: 0px;
+        background-repeat: repeat;
+        padding-bottom: 5px;
+    }
+    .aboutTextContainer
+    {
+        height: 195px;
+        padding: 15px 4%;
+    }
+    .tileContainer
+    {
+        width: 52%;
+        float: right;
+    }
+    .tile1
+    {
+        width: 25%;
+        height: 100px;
+        float: left;
+        background: #0e2f80;
+        padding: 10px 0px;
+        margin: 0px 1% 10px 1%;
+        text-align: center;
+        opacity: 1.0;
+        filter: alpha(opacity=100);
+        color: #FFF;
+        font-size: 14px;
+        font-family: 'Open Sans' ,Verdana, Geneva, sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    /*.tile1:hover{background:#183884;opacity: 0.5; filter: alpha(opacity=50); color:#FFF;}*/
+    .tile1:hover
+    {
+        background: #de2018;
+        color: #FFF;
+    }
+
+    .tile1MIS
+    {
+        width: 25%;
+        height: 100px;
+        float: left;
+        background: #0e2f80;
+        padding: 10px 0px;
+        margin: 0px auto 10px 28%;
+        text-align: center;
+        opacity: 1.0;
+        filter: alpha(opacity=100);
+        color: #FFF;
+        font-size: 14px;
+        font-family: 'Open Sans' ,Verdana, Geneva, sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    /*.tile1:hover{background:#183884;opacity: 0.5; filter: alpha(opacity=50); color:#FFF;}*/
+    .tile1MIS:hover
+    {
+        background: #de2018;
+        color: #FFF;
+    }
+
+    .tileImgBox
+    {
+        width: auto;
+        height: 60px;
+        margin: 10px auto 4px auto;
+    }
+    .tileNameBox
+    {
+        width: 85%;
+        margin: auto;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    .NewUser
+    {
+        width: 93%;
+        padding: 12px 3% 10px 4%;
+        border-bottom: solid 1px #CCC;
+    }
+    /*-----New 28/08/14------*/
+    .regBtnContainer
+    {
+        width: auto;
+        float: right;
+    }
+    /*-----New 28/08/14------*/
+    .heading4
+    {
+        width: auto;
+        font-family: Verdana, Geneva, sans-serif;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: bold;
+        color: #de2418;
+        float: left;
+    }
+    /*-----New 28/08/14------*/
+    /*---------------Register FIR---------------------*/
+    .registerFIRBodyContainer
+    {
+        width: 65%;
+        margin: 30px auto;
+        background-image: url(../images/opac_bg.png);
+        border-radius: 15px;
+        background-repeat: repeat;
+        padding-bottom: 5px;
+    }
+    .heading2
+    {
+        width: 96%;
+        padding: 12px 2% 10px 2%;
+        font-family: Verdana, Geneva, sans-serif;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: bold;
+        color: #de2418;
+        border-bottom: solid 1px #CCC;
+    }
+    .heading3
+    {
+        width: 96%;
+        padding: 12px 2% 10px 2%;
+        font-family: Verdana, Geneva, sans-serif;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: normal;
+        color: #003196;
+    }
+    .registerTabContainer
+    {
+        width: 98%;
+        padding: 5px 1%;
+        background-image: url(../images/tabBg1.png);
+        background-repeat: repeat;
+    }
+    .tab
+    {
+        width: auto;
+        float: left;
+        background: #183884;
+        padding: 7px 6px;
+        margin: 0px 1px;
+        text-align: center;
+        opacity: 1;
+        filter: alpha(opacity=100);
+        color: #FFF;
+        font-size: 12px;
+        font-family: Verdana, Geneva, sans-serif;
+        font-weight: normal;
+        border-radius: 3px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    /*.tab:hover{background:#0e2f80;opacity: 1.0; filter: alpha(opacity=100); color:#FFF;}*/
+    .tab1
+    {
+        width: auto;
+        float: left;
+        background: #de2018;
+        padding: 7px 6px;
+        margin: 0px 1px;
+        text-align: center;
+        opacity: 1;
+        filter: alpha(opacity=100);
+        color: #FFF;
+        font-size: 12px;
+        font-family: Verdana, Geneva, sans-serif;
+        font-weight: normal;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    .RFIRRow1
+    {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        font-size: 13px;
+        color: #303030;
+    }
+    .RFIRCol1
+    {
+        width: 48%;
+        height: auto;
+        float: left;
+    }
+    .RFIRCol2
+    {
+        width: 48%;
+        height: auto;
+        float: right;
+    }
+    .RFIRCol3
+    {
+        width: 9%;
+        height: auto;
+        float: left;
+        margin-right: 1%;
+    }
+    .RFIRCol4
+    {
+        width: 29%;
+        height: auto;
+        float: left;
+        margin-right: 1%;
+    }
+    .RFIR91
+    {
+        width: 13%;
+        height: auto;
+        float: left;
+        margin-right: 1%;
+    }
+    /*-----New 28/08/14------*/
+    .RFIRMobNo
+    {
+        width: 80%;
+        height: auto;
+        float: right;
+        margin-right: 1%;
+    }
+    /*-----New 28/08/14------*/
+    .RFIRLabel
+    {
+        width: 100%;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #303030;
+        font-family: Verdana, Geneva, sans-serif;
+        font-weight: bold;
+    }
+    .emptyBox2
+    {
+        width: 96%;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+
+    .emptyBox2new
+    {
+        width: 10%;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+    .emptyBox2CDOwner
+    {
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+    .emptyBox2CaseDiary
+    {
+        width: 50%;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+    }
+    .emptyDateBox
+    {
+        width: 6%;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+        margin-left: 1%;
+    }
+    .emptyyearBox
+    {
+        width: 10%;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+        margin-left: 1%;
+    }
+    .emptyDateBoxCD
+    {
+        width: 14%;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+        margin-left: 1%;
+    }
+    .emptyyearBoxCD
+    {
+        width: 23%;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+        margin-left: 1%;
+    }
+    .emptyTimeBox
+    {
+        width: 30px;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url(../images/emptyTextBox_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+        margin-left: 1%;
+    }
+    #Table2
+    {
+        width: 100%;
+    }
+
+    #Table2 td
+    {
+        padding-left: 10px;
+    }
+    .listBox
+    {
+        width: 99%;
+        padding: 9px 2% 9px 2%;
+        font-size: 14px;
+        color: #333;
+        border: solid 1px #bababa;
+        background-image: url('../images/emptyTextBox_bg.png');
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: normal;
+        margin-left: 0%;
+        margin-top: 0px;
+    }
+
+
+    /*-----------------Start Case Diary CSS----------------------------*/
+    .CDMainContainer
+    {
+        width: 95%;
+        margin: 30px auto; /*background-image: url(images/opac_bg.png);*/
+        border-radius: 15px;
+        background-repeat: repeat;
+        padding: 10px; /*font-family: 'Open Sans';*/
+        border: solid 1px #CCC;
+    }
+    .CD_heading1
+    {
+        width: 96%;
+        padding: 12px 2% 7px 2%;
+        font-family: Verdana, Geneva, sans-serif;
+        text-align: center !important;
+        text-transform: uppercase;
+        font-size: 125%;
+        font-weight: bold;
+        color: #de2418;
+    }
+    .CD_Heading2
+    {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0px 10px 0px;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        color: #000 !important;
+    }
+    .CD_horizontalLine
+    {
+        width: 100%;
+        height: 1px;
+        margin: 10px 0px;
+        border-bottom: solid 1px #CCC;
+    }
+    .CD_row1
+    {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        font-size: 75%;
+    }
+    .CD_row2
+    {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0px;
+        font-size: 75%;
+    }
+    .CD_row3
+    {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px !important;
+        font-size: 100%;
+        line-height: 20px;
+    }
+    .CD_col1
+    {
+        width: 48%;
+        height: auto;
+        float: left;
+    }
+    .CD_col2
+    {
+        width: 48%;
+        height: auto;
+        float: right;
+    }
+    .CD_col11
+    {
+        width: 20%;
+        height: auto;
+        float: left;
+    }
+    .CD_col22
+    {
+        width: 75%;
+        height: auto;
+        float: right;
+    }
+    .CD_col3
+    {
+        width: 15%;
+        height: auto;
+        float: left;
+        margin-right: 10px;
+    }
+    .CD_LabelCol1
+    {
+        width: auto;
+        margin-right: 10px;
+        float: left;
+    }
+    .CD_DataCol1
+    {
+        width: auto;
+        margin-right: 10px;
+        float: left;
+        font-weight: bold;
+    }
+    .CD_emptyTextArea
+    {
+        width: 97%;
+        padding: 9px 1% 9px 2%;
+        font-size: 12px;
+        color: #a2a2a2;
+        border: solid 1px #bababa;
+        background-image: url(images/emptyTextArea_bg.png);
+        background-repeat: repeat-x;
+        background-position: left top;
+        border-radius: 2px;
+        font-style: italic;
+    }
+    .CD_DOI_heading
+    {
+        width: 98%;
+        padding: 1%;
+        background-color: #e7e3e7;
+        text-transform: uppercase;
+        font-weight: bold;
+        border: solid 1px #222;
+    }
+    .CD_DOI_container
+    {
+        width: 98%;
+        padding: 1%;
+        border-right: solid 1px #222;
+        border-bottom: solid 1px #222;
+        border-left: solid 1px #222;
+    }
+    .CD_radioButton
+    {
+        width: 295px;
+        margin: auto;
+    }
+    .CD_timeCol1
+    {
+        width: 15px;
+        margin-right: 4px;
+        float: left;
+        margin-top: 11px;
+    }
+    .CD_timeTextBoxCol1
+    {
+        width: 70%;
+        float: right;
+    }
+    .CD_table
+    {
+        border-collapse: collapse;
+    }
+    .CD_table th
+    {
+        border: 1px solid #000;
+        color: #000;
+        padding: 5px 5px;
+        background-color: #e7e3e7;
+        text-align: center;
+    }
+    .CD_table td
+    {
+        color: #000;
+        border: 1px solid #000;
+        padding: 5px 10px;
+        text-align: center;
+    }
+    .CD_checkBoxContainer
+    {
+        width: 22%;
+        height: 30px;
+        float: left;
+        border: solid 1px #555;
+        padding: 1%;
+        margin: 2px;
+    }
+
+    #footer
+    {
+        width: 100%;
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        padding: 7px 0px 7px 0px;
+        background-color: #000;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+    }
+/* Define styles for the tiles */
+.tile {
+    display: inline-block;
+    width: 200px; /* Adjust the width as needed */
+    margin-right: 20px; /* Adjust the spacing between tiles */
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the tile images */
+.tileImgBox1 img {
+    display: block;
+    margin: 20px 0 0 50px ;
+
+}
+.tileImgBox2 img {
+    display: block;
+    margin: 70px 0 0 50px;
+    width: 100px;
+    height: 90px;
+    top: 50px;
+}
+
+/* Style for the tile names */
+.tileNameBox1 {
+    font-size: 16px;
+    color: #000; /* Adjust the color as needed */
+    margin-top: 15px;
+}
+.tileNameBox2 {
+    font-size: 16px;
+    color: #000; /* Adjust the color as needed */
+    margin-top: 7px;
+}
+
+
+/* Style for the links */
+.report-link {
+    text-decoration: none;
+}
+
+/* Style for the container */
+.loginRegisterContainer {
+    text-align: center;
+}
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 245, 245, 0.599); /* Set background color to whitesmoke */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  #preloader img {
+    width: 100px;
+    height: 100px;
+  }

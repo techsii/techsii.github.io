@@ -1,0 +1,1369 @@
+/* Body */
+body {
+  font-family: Georgia;
+  margin: 0;
+  padding: 0;
+  background-color:rgba(128, 0, 128, 0.274);
+  font-weight: bold;
+  height: auto; /* Remove fixed height */
+  flex-direction: column; 
+  overflow-x: hidden;
+ 
+}
+#slider-container {
+  position: relative;
+  width: 100vw;
+  height: 85vh;
+  overflow: hidden;
+  margin-top: 121px;
+}
+
+#image-slider {
+  display: flex;
+  transition: transform 1s ease-in-out; /* Slower transition */
+  height: 100%;
+}
+
+.slide {
+  flex: 1;
+  min-width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50px 50px 0 0;
+  margin-right: 1px;
+}
+.dot-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; /* Ensure dots are above the slider */
+}
+.dot {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 5px; /* Adjust spacing between dots */
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #a14e0b; /* Change active dot color */
+}
+
+
+/*--------about section start----- */
+#about-container {
+  padding: 20px;
+  background-color: #3b6aa479; /* Light gray background */
+  margin: 20px 5px 20px 70px;
+  width: 80%; /* Adjust width as needed */
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px; /* Rounded corners */
+   
+}
+
+#about-container h2 {
+  font-size: 24px; /* Adjust font size */
+  margin-bottom: 30px; /* Add some space below the heading */
+  text-decoration: underline;
+}
+
+#about-container p {
+  font-size: 18px; /* Adjust font size */
+  line-height: 1.6; /* Adjust line height for better readability */
+  margin-top: -19px;
+}
+
+/*----------------------------------------------about section end ---------------------------------------------------------- */
+
+
+/*------------------------------------about section & user manual hover----------------------------------------*/
+
+#about-container,
+#usermanual-container {
+  border: 1px solid transparent; /* Initially transparent border */
+  transition: border 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition effect for border and transform */
+}
+
+/* Apply lightning border and scale when hovering */
+#about-container:hover,
+#usermanual-container:hover {
+  border: 1px solid transparent; /* Make the border transparent */
+  animation: lightning 3s linear infinite; /* Apply lightning animation */
+  transform: scale(1.1); /* Scale the box by 10% on hover */
+}
+
+/* Define the lightning animation */
+@keyframes lightning {
+  0%, 10% {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.7); /* Initial shadow */
+  } 
+  60%, 70% {
+    box-shadow: 0 0 10px 5px rgba(255, 0, 255, 0.7)
+  }
+  100% {
+    box-shadow: 0 0 10px 5px rgba(0, 255, 255, 0.7); /* Magenta lightning */
+  }
+}
+
+/*--------user manual start----- */
+#usermanual-container {
+  padding: 20px;
+  background-color: #3ba46379; /* Light gray background */
+  margin: 20px 5px 20px 5px;  /* Center the section horizontally */
+  width: 80%;/* Adjust width as needed */
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px; /* Rounded corners */
+  margin-left: 12%;
+   
+}
+
+#usermanual-container h2 {
+  font-size: 24px; /* Adjust font size */
+  margin-bottom: 30px; /* Add some space below the heading */
+  text-decoration: underline;
+}
+
+#usermanual-container p {
+  font-size: 18px; /* Adjust font size */
+  line-height: 1.6; /* Adjust line height for better readability */
+  margin-top: -19px;
+}
+
+
+/*--------user manual end ----- */
+/* Form styles */
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(234, 203, 146, 0.448);
+  padding: 20px;
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 300px; /* Adjust width as needed */
+  height: 340px;
+}
+
+input,button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+button {
+  width: 260px;
+  background-color:rgba(28, 131, 113, 0.8);
+  color: white;
+  border: none;
+  border-radius: 15px 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: medium;
+}
+
+button:hover {
+  border-radius: 15px;
+  border: 2px solid whitesmoke; 
+}
+
+
+
+#username-input,
+#password{
+  border-radius: 20px;
+}
+/* Eye button styling */
+#eye-button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  margin-left: -40px;
+}
+
+#eye-icon {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 20%;
+  padding: 12px 22px 0 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*--------------- Navigation Bar-------------- */
+
+header {
+  position: fixed; /* Change position to fixed */
+  top: 0; /* Stick it to the top */
+  height: 120px; /* Adjust height as needed */
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+  z-index: 1; /* Ensure the header is above the slider */
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  border-radius: 0 0 50px 50px; /* Adjust border-radius for the corners */
+}
+
+
+/* Dropdown content styles */
+#service-dropdown-content {
+  background-color: rgba(0, 0, 0, 0.633);
+  margin-top: 26px;
+  height: 471px;
+}
+
+#service-dropdown-content a:nth-child(1),
+#service-dropdown-content a:nth-child(2),
+#service-dropdown-content a:nth-child(3) {
+  font-size: 15px;
+  color:white;
+  transition: none;
+  width: 200px; /* Adjust width as needed */
+  height: 70px; /* Adjust height as needed */
+  line-height: 40px; /* Vertically center text within the button */
+  display: block; /* Ensure they are block elements */
+  text-align: center; /* Center the text horizontally */
+  margin: 5px auto; /* Center the option horizontally and add some space between them */
+  font-family: Arial;
+  border-bottom: 1px solid #0c0c0c; /* Add border at the bottom */
+}
+
+#service-dropdown-content a:nth-child(4) {
+  color: white;
+  transition: none;
+  width: 200px; /* Adjust width as needed */
+  height: 70px; /* Adjust height as needed */
+  line-height: 40px; /* Vertically center text within the button */
+  display: block; /* Ensure they are block elements */
+  text-align: center; /* Center the text horizontally */
+  margin: 5px auto 20px; /* Center the option horizontally and add some space between them */
+  border-bottom: 1px solid #0f0f0f; /* Add border at the bottom */
+}
+
+#service-dropdown-content a:last-child {
+  border-bottom: none;
+  font-size: medium;
+  font-family: Arial;
+  padding: 28px;
+  padding-bottom: 47px;
+  padding-top: 27px;
+  padding-left: 28px;
+  margin-left: -1px;
+  padding-right: 48px;
+  margin-right: -5px;
+}
+
+
+#service-dropdown-content a:last-child:hover {
+  border: 1px solid white; /* White border on hover */
+  color: rgb(0, 221, 255);
+ 
+}
+/* Navigation styles */
+#nav-hed {
+  padding: 30px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+nav {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* Adjust width as needed */
+}
+
+nav a {
+  color: #e3d8d8;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin: 0 25px 0 0; /* Adjust margin as needed */
+  padding: 10px; /* Adjust padding for equal size */
+  border: 1px solid transparent; /* Transparent border by default */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.hover2:hover {
+  border: 1px solid white; /* White border on hover */
+  color: rgb(0, 221, 255); /* Text color on hover */
+}
+
+
+
+.nav-links {
+  padding-right: 90px;
+  margin: 0 62% 5px 0;
+  width: 50%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(144, 204, 190, 0.718);
+  min-width: 120px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  padding: 10px 0;
+}
+
+.dropdown-content span {
+  color: #333;
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  font-family: Arial, sans-serif; /* Change font family */
+  font-size: 16px; /* Change font size */
+}
+
+.dropdown-content span:hover {
+  border-radius: 15px;
+    border: 2px solid whitesmoke;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/*-----------Navigation Bar end-----------------*/
+
+/*--------------Account info start------------ */
+#account-info {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(245, 222, 179, 0.522); /* Light gray background */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 15px; /* Rounded shape */
+  padding: 10px 20px; /* Padding */
+  font-family: Arial, sans-serif; /* Font family */
+  height: 60px;
+}
+
+#account-info img {
+  width: 35px; /* Profile image size */
+  height: 35px;
+  border-radius: 50%;
+  margin-bottom: 5px; /* Spacing between image and text */
+  border: 2px solid #fff; /* White border */
+}
+
+#account-info span {
+  font-size: 15px; /* Font size */
+  color: #000000; /* Text color (dark gray) */
+  cursor: pointer;
+  
+}
+
+#current-user {
+  position: absolute;
+  top: 50%;
+  right: 20px; /* Adjust as needed */
+  transform: translateY(-50%);
+  display: block;
+}
+
+#new-button {
+  margin: 20px 0 0 20px;
+}
+
+
+
+/*------------------------------------------Dark mode on off ------------------------------------*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.Light {
+  background-color: rgba(128, 0, 128, 0.274); /* Light mode background color */
+  color: black; /* Text color remains black for better readability */
+}
+.Dark {
+  background-color: rgba(0, 0, 0, 0.919);
+  color: white;
+}
+.LightHeader {
+  background-color: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.DarkHeader {
+  background: linear-gradient(45deg, rgba(21, 149, 104, 0.5) 0%, rgba(32, 182, 32, 0.8) 50%, rgba(13, 152, 145, 0.5) 100%);
+  color: #000000;
+}
+.LightText {
+  color: black; 
+}
+
+.DarkText {
+  color: white;
+}
+
+
+/*--------------Account info end------------ */
+
+/*------------- webkit-scroller--------- */
+::-webkit-scrollbar{
+  width: 20px;
+  height: 5px;
+}
+::-webkit-scrollbar-track{
+  background-color:rgba(0, 0, 0, 0.842);
+  width: 20px;
+  
+}
+::-webkit-scrollbar-thumb{
+  height: 5px; /* Adjust the height as needed */
+  background-color: rgba(50, 143, 229, 0.682);
+  border-radius: 10px;
+  border: .5rem solid transparent;
+  background-clip: content-box;
+}
+/*--------------contact style Start------------------- */
+
+.headline h3{
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bolder;
+  text-decoration: underline;
+  margin-bottom: 10px;
+
+}
+.headline p{
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  margin: -5px 0 5px 0;
+  padding-top: 0.5px;
+  
+}
+.third-main .basic-box{
+  padding-left: 20%;
+}
+.basic-box .text-id{
+  width: 400px;
+  height: 65px;
+  border-radius: 8px;
+  margin: 5px 2px;
+  background-color: beige;
+}
+.basic-box .text-email{
+  width: 400px;
+  height: 65px;
+  border-radius: 8px;
+  margin: 5px 2px;
+  background-color: beige;
+}
+.basic-box .text-project{
+  width: 400px;
+  height: 65px;
+  border-radius: 8px;
+  margin: 5px 2px;
+  background-color: rgb(234, 234, 206);
+}
+.basic-box .text-mesg{
+  width: 400px;
+  height: 300px;
+  border-radius: 15px;
+  margin: 5px 2px;
+  background-color: rgb(235, 235, 204);
+  padding-top: 10px ;
+  padding-right: 20px; /* Adjust padding as needed */
+  margin: 0;
+  resize: vertical;
+  box-sizing: border-box;
+  border: 2px solid #1b1a1a;
+  text-align: left;
+  text-indent: 20px;
+}
+.basic-box .btn2 {
+  margin: 10px 0 20px 5px;
+  width: 150px;
+  height: 45px;
+  background-color: rgba(27, 145, 125, 0.785);
+  color: black;
+  font-size: medium;
+  border-radius: 10px; 
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.basic-box .btn2:hover {
+  border-radius: 15px 10px;
+  border: 2px solid whitesmoke; 
+}
+::placeholder{
+text-indent: 20px;    
+color: black;
+font-size: 15px;
+padding-top: 10px;
+}
+.third-main {
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start;        
+}
+.left-box {
+  flex: 1; 
+  padding: 50px; 
+}
+
+.right-box {
+  flex: 1; 
+  padding: 50px; 
+}
+
+.basic-box {
+  margin-bottom: 10px; 
+}  
+
+.left-box {
+display: flex;
+flex-direction: column; 
+
+}
+
+.contact-logo,
+.Email-logo,
+.location-logo {
+display: flex;
+align-items: center;
+margin : 20px 0 10px 0;
+}
+
+.contact-logo img,
+.Email-logo img,
+.location-logo img {
+width: 30px;
+height: 30px;
+margin-right: 20px;
+}
+
+.contact-info {
+flex-grow: 1; 
+}
+.contact-info h2,
+.contact-info p {
+margin: 0;
+}
+
+.Fourth-logo img
+{
+  width: 30px;
+  margin-left: 2px;
+}
+.arrow img{
+  width: 50px;
+  position: relative; 
+  top: -100px; 
+  left: 95%; 
+}
+/*--------------contact style end------------------- */
+
+/*-------------------footer start-------------*/
+.footer {
+  background-color: #333333af;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  width: 98%;
+  border-radius: 50px 50px 0  0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer p {
+  margin-bottom: 10px;
+}
+/*-----------------------preloader-----------------*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(245, 245, 245, 0.599); /* Set background color to whitesmoke */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#preloader img {
+  width: 100px;
+  height: 100px;
+}
+
+/*-------------------footer End-------------*/
+
+
+/*-------------------------------------- Responsive styles------------------------------------ */
+
+
+@media only screen and (max-width: 768px) {
+ /* Header */
+ header {
+  height: 60px;
+  font-size: 14px;
+  padding: 5px;
+}
+
+#nav-hed {
+  padding: 0;
+  font-size: 12px; /* Decrease font size */
+}
+
+/* Navigation */
+nav {
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+.nav-links a {
+  display: block; 
+  margin-bottom: 1px;
+}
+nav a {
+  font-size: 10px;
+  padding: 2px;
+  width: 50%;
+}
+.nav-links a#loginLink {
+  display: none; /* Hide the Sign Up link */
+} 
+.nav-links {
+  padding-right:35px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+#account-info span{
+font-size: 10px;
+}
+#account-info {
+  top: 5px; 
+  right: 10px;      
+  height: 30px;      
+  width: 39px;       
+  padding: 5px;     
+  font-size: 12px;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#account-info img {
+  width: 15px;           
+  height: 15px;           
+  margin-bottom: 3px;  
+  border-width: 1px;    
+} 
+.account-info span{
+  font-size: 0px;
+}
+#user-img {
+  margin-bottom: 5px;
+}
+#dropdown-content {
+  right: 0;
+  width: 80px;
+}
+
+.dropdown-content span {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+ #current-user {
+  right: 5px;
+  font-size: 8px;
+ }
+
+ /* Slider */
+ #slider-container {
+  height: 50vh; 
+  margin-top: 59px;  
+ }
+
+ .slide img {
+  object-fit: cover; /* Ensure the background image covers the slide */
+  width: 100%; /* Ensure the image takes the full width of the slide */
+  height: 100%; 
+ }
+
+ #dot-container {
+  bottom: 5px; /* Adjust position */
+ }
+
+ /* Form styles */
+ .form-container {
+  width: 90%; /* Adjust width */
+  padding: 10px; /* Adjust padding */
+ }
+
+ input {
+  width: 100%; /* Adjust width */
+  padding: 8px; /* Adjust padding */
+  margin-bottom: 10px; /* Adjust margin */
+ }
+ .button {
+  width: 20rem; /* Set the width */
+  height: 40rem; /* Set the height */
+ }
+ #create-account-btn {
+  display: block; /* Ensure the button is displayed as a block-level element */
+  margin: 10px auto; /* Center the button horizontally and provide margin */
+ }
+ #eye-icon {
+  width: 20px; /* Adjust width */
+  height: 20px; /* Adjust height */
+ }
+ #eye-button {
+  position: absolute;
+  top: 46%;
+  right: 10px;
+  transform: translateY(-50%);
+ }
+
+
+/* New Button */
+ #new-button {
+  margin-top: 20px; /* Adjust margin */
+  margin-left: auto; /* Move button to the right */
+  margin-right: auto; /* Move button to the left */
+  display: block; /* Ensure the button is displayed as a block element */
+ }
+
+ #login-container {
+  top: 20%; /* Adjust position */
+  transform: translate(-50%, -20%); /* Adjust position */
+  width: 80%; /* Adjust width */
+  margin: 0 auto 20px auto; /* Center horizontally */
+  height: 40%;
+ }
+
+
+ /* About Section */
+ #about-container {
+  width: 90%; /* Adjust width */
+  padding: 20px; /* Adjust padding */
+ }
+
+ #about-container h2 {
+  font-size: 18px; /* Decrease font size */
+  margin-bottom: 10px; /* Adjust margin */
+ }
+/* CSS for additional details container */
+.additional-details {
+  display: none; /* Initially hide the additional details */
+  padding: 10px;
+}
+.additional-details2 {
+  display: none; /* Initially hide the additional details */
+  padding: 10px;
+}
+ #about-container p {
+  font-size: 14px; /* Decrease font size */
+  margin-bottom: 10px; /* Adjust margin */
+ }
+
+/* User Manual Section */
+#usermanual-container {
+  width: 90%; /* Adjust width */
+  margin: 20px auto; /* Center the container horizontally */
+  padding: 10px; /* Add padding */
+}
+
+#usermanual-container h2 {
+  font-size: 20px; /* Adjust font size */
+  margin-bottom: 10px; /* Add some space below the heading */
+}
+
+#usermanual-container p {
+  font-size: 14px; /* Adjust font size */
+  line-height: 1.6; /* Adjust line height for better readability */
+}
+
+
+/* Contact Section */
+.headline h3 {
+  font-size: 18px; /* Decrease font size */
+  margin-bottom: 10px; /* Adjust margin */
+}
+
+.headline p {
+  font-size: 12px; /* Decrease font size */
+  margin-bottom: 10px; /* Adjust margin */
+}
+
+.third-main .basic-box {
+  padding-left: 10%; /* Adjust padding */
+}
+
+.basic-box .text-id,
+.basic-box .submit-btn {
+  width: 80%; /* Adjust width */
+  margin-bottom: 10px; /* Adjust margin */
+}
+
+/* Footer */
+footer {
+  padding: 10px; /* Adjust padding */
+  font-size: 12px; /* Decrease font size */
+}
+
+#footer-content {
+  padding: 20px; /* Adjust padding */
+}
+
+#footer-content h3 {
+  font-size: 16px; /* Decrease font size */
+}
+
+#footer-content p {
+  font-size: 12px; /* Decrease font size */
+}
+* Login Container */
+#login-container {
+  top: 40%; /* Adjust position */
+  transform: translate(-50%, -40%); /* Adjust position */
+  width: 50%; /* Adjust width */
+}
+
+/* Third Main Section */
+.third-main {
+  padding: 20px; /* Adjust padding */
+}
+
+.third-main .basic-box {
+  padding-left: 0; /* Reset padding */
+}
+
+.third-main .basic-box .text-id,
+.third-main .basic-box .submit-btn {
+  width: 100%; /* Adjust width */
+}
+/* Adjust left-box and right-box content */
+.third-main {
+display: flex; /* Use flexbox for layout */
+flex-direction: column; /* Stack items vertically */
+align-items: center; /* Align items horizontally */
+}
+
+.left-box, .right-box {
+width: 100%; /* Occupy full width */
+max-width: 400px; /* Limit maximum width */
+margin-bottom: 20px; /* Add margin for spacing */
+}
+
+.contact-logo, .Email-logo, .location-logo {
+display: flex; /* Use flexbox for layout */
+align-items: center; /* Align items vertically */
+}
+
+.contact-info {
+margin-left: 10px; /* Add margin for spacing */
+}
+
+/* Adjust form-container width and height */
+.basic-box {
+width: 100%; /* Occupy full width */
+margin-bottom: 20px; /* Add margin for spacing */
+}
+
+.text-id, .text-email, .text-project, .text-mesg {
+width: calc(100% - 20px); /* Adjust width */
+padding: 5px; /* Add padding for better appearance */
+box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.text-mesg {
+height: 80px; /* Set a fixed height for textarea */
+}
+
+.btn2 {
+width: 100%; /* Make button occupy full width */
+height: 40px; /* Set the height */
+padding: 10px; /* Add padding for better appearance */
+box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.fourth {
+display: flex;
+bottom: 10px; 
+margin-left: 350px;
+
+}
+
+.arrow img {
+width: 30px; /* Adjust the width of the arrow */
+height: 30px; /* Adjust the height of the arrow */
+}
+}
+
+/*------------------------------------------Realme 85g--------------------------------------*/
+@media only screen and (max-device-width: 1080px) {
+  body{
+    width: 29%;
+    height: 20px;
+  }
+  /* Header */
+  header {
+    height: 63px;
+    font-size: 14px;
+    padding: 5px;
+    width: 380px;
+  }
+
+  #nav-hed {
+    padding: 0;
+    font-size: 12px;
+    width: 210px;
+  }
+  
+  /* Navigation */
+  nav {
+    bottom: 5px;
+    display: flex;
+    justify-content: center;
+  }
+  .nav-links a {
+    display: block; 
+    margin-bottom: 1px;
+  }
+  nav a {
+    font-size: 10px;
+    padding: 2px;
+    width: 50%;
+  }
+  .nav-links a#loginLink {
+    display: none; /* Hide the Sign Up link */
+  } 
+  .nav-links {
+    padding-right: 35px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 77%;
+    margin-top: 1px;
+    height: 12px;
+  }
+
+ #account-info span{
+  font-size: 10px;
+ }
+  #account-info {
+    top: 5px;
+    right: 15px;
+    height: 30px;
+    width: 36px;
+    padding: 5px;
+    font-size: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #account-info img {
+    width: 15px;           
+    height: 15px;           
+    margin-bottom: 3px;  
+    border-width: 1px;    
+  } 
+  .account-info span{
+    font-size: 0px;
+  }
+  #user-img {
+    margin-bottom: 5px;
+  }
+  #dropdown-content {
+    right: 0;
+    width: 80px;
+  }
+
+  .dropdown-content span {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  #current-user {
+    right: 5px;
+    font-size: 8px;
+  }
+
+  /* Slider */
+  #slider-container {
+    height: 55vh; 
+    margin: 60px 0 0 10px;
+  }
+
+  .slide img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    margin-left: 1px;
+    margin-top: 8px;
+  }
+
+  #dot-container {
+    bottom: 1px; /* Adjust position */
+  }
+
+
+  input {
+    width: 100%; /* Adjust width */
+    padding: 8px; /* Adjust padding */
+    margin-bottom: 10px; /* Adjust margin */
+  }
+  .button {
+    width: 20rem; /* Set the width */
+    height: 40rem; /* Set the height */
+  }
+  #eye-icon {
+    width: 20px; /* Adjust width */
+    height: 20px; /* Adjust height */
+    margin-top: 0px;
+  }
+  #eye-button {
+    position: absolute;
+    top: 46%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+  
+
+ /* New Button */
+ #new-button {
+  margin-top: 15px;
+    position: relative;
+    left: -3px;
+ }
+
+  #login-container {
+    top: 22%;
+    transform: translate(-50%, -20%);
+    width: 76%;
+    margin: 4px auto 20px 3px;
+    height: 46%;
+  }
+  
+  #loginLink{
+    visibility: hidden;
+  }
+   /* About Section */
+   #about-container {
+    width: 300%;
+    margin: 15px  auto; /* Center the section */
+    padding: 20px;
+    height: auto; /* Set height to auto */
+    margin-left: 15px;
+  }
+  #about-container h2 {
+    font-size: 18px; /* Restore font size */
+    margin-bottom: 20px; /* Adjust margin */
+  }
+
+  #about-container p {
+    font-size: 14px; /* Restore font size */
+    margin-bottom: 15px; /* Adjust margin */
+    margin-bottom: 10px;
+  }
+
+   /* User Manual Section */
+  #usermanual-container {
+    width: 300%;
+    margin: 0 auto; /* Center the section */
+    padding: 20px;
+    height: auto; /* Set height to auto */
+    margin-left: 15px;
+  }
+
+
+  #usermanual-container h2 {
+    font-size: 20px; /* Adjust font size */
+    margin-bottom: 20px; /* Add some space below the heading */
+  }
+
+  #usermanual-container p {
+    font-size: 14px; /* Restore font size */
+    line-height: 1.6; /* Adjust line height */
+    margin-bottom: 15px; /* Adjust margin */
+    margin-bottom: 10px;
+  }
+
+  /* Contact Section */
+  .headline h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 192px;
+  }
+
+  .headline p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 85px;
+    width: 210px;
+  }
+
+  .third-main .basic-box {
+    padding-left: 10%; /* Adjust padding */
+  }
+
+  .basic-box .text-id,
+  .basic-box .submit-btn {
+    width: 80%; /* Adjust width */
+    margin-bottom: 10px; /* Adjust margin */
+  }
+  .basic-box .text-mesg {
+    width: 400px;
+    height: 143px;
+    border-radius: 15px;
+    background-color: rgb(235, 235, 204);
+    padding-top: 10px;
+    padding-right: 20px;
+    margin: 0;
+    resize: vertical;
+    box-sizing: border-box;
+    border: 2px solid #1b1a1a;
+    text-align: left;
+    text-indent: 20px;
+}
+ .basic-box .text-email {
+  width: 400px;
+  height: 65px;
+  border-radius: 8px;
+  margin: -20px 3px;
+  background-color: beige;
+ }
+.basic-box .btn2 {
+  margin: 10px 0 20px 4px;
+  width: 111px;
+  height: 51px;
+  background-color: rgba(27, 145, 125, 0.785);
+  color: black;
+  font-size: medium;
+  border-radius: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+ .footer {
+  background-color: #333333af;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    width: 325%;
+    border-radius: 50px 50px 0 0;
+    height: 44px;
+
+ }
+  #footer-content {
+    padding: 20px; /* Adjust padding */
+  }
+
+  #footer-content h3 {
+    font-size: 16px; /* Decrease font size */
+  }
+
+  #footer-content p {
+    font-size: 12px; /* Decrease font size */
+  }
+  /* Third Main Section */
+  .third-main {
+    padding: 20px; /* Adjust padding */
+  }
+
+  .third-main .basic-box {
+    padding-left: 0; /* Reset padding */
+  }
+
+  .third-main .basic-box .text-id,
+  .third-main .basic-box .submit-btn {
+    width: 100%; /* Adjust width */
+  }
+  /* Adjust left-box and right-box content */
+.third-main {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Align items horizontally */
+}
+
+.left-box{
+  width: 149%;
+    margin-bottom: 114px;
+    margin-top: -34px;
+    padding: 2px
+ }
+ 
+   .right-box {
+    width: 170%;
+    margin-top: -350px;
+    margin-right: -516px;
+    height: 20px;
+    padding: 2px;
+
+  }
+.contact-logo, .Email-logo, .location-logo {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Align items vertically */
+}
+
+.contact-info {
+  margin-left: 10px; /* Add margin for spacing */
+}
+
+
+
+/* Adjust form-container width and height */
+.basic-box {
+  width: 100%; /* Occupy full width */
+  margin-bottom: 20px; /* Add margin for spacing */
+}
+
+.text-id,
+.text-email,
+.text-project,
+.text-mesg {
+  width: calc(100% - 20px); /* Occupy full width minus padding */
+  padding: 8px; /* Adjust padding */
+  margin-bottom: 10px; /* Adjust margin */
+  box-sizing: border-box; /* Include padding in width calculation */
+  max-width: 100%; /* Ensure the input boxes don't overflow */
+}
+
+.text-mesg {
+  height: 80px; /* Set a fixed height for textarea */
+}
+
+.btn2 {
+  width: 100%; /* Make button occupy full width */
+  height: 40px; /* Set the height */
+  padding: 10px; /* Add padding for better appearance */
+  box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.fourth {
+ display: none; /* Push the arrows to the right */
+}
+
+.arrow img {
+  display: none;
+}
+
+#para{
+  font-size: x-small;
+}
+  #about-container:hover,
+  #usermanual-container:hover {
+    border: 1px solid transparent; /* Make the border transparent */
+    animation: lightning 3s linear infinite; /* Apply lightning animation */
+    transform: none; /* Disable the transformation on hover */
+  }
+}
