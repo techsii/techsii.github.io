@@ -1,0 +1,341 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image:url(tracking.png);
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0 0 50px 50px; 
+    
+}
+
+.container {
+    position: relative; /* Set container as the relative positioning context */
+    background-color: rgba(135, 207, 235, 0.768);
+    max-width: 600px;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group {
+    position: relative; /* Set form group as the relative positioning context */
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: calc(100% - 30px); /* Adjust width to leave space for cross button */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #111111;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color:rgb(0, 145, 255);
+}
+
+.status-result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+}
+.cross-button2 {
+    position: absolute;
+    top: 29px;
+    right: 21px;
+    cursor: pointer;
+}
+  
+  
+  .cross-button2:hover {
+    color: #ff0000; /* Changed color on hover */
+  }
+  
+  
+/*------------------------------------------Dark mode on off ------------------------------------*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-top: -50px;
+    margin-left: 90%;
+    top: -13px;
+    visibility: hidden;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .Light {
+    background-color:  rgba(241, 209, 150, 0.532); /* Light mode background color */
+    color: black; /* Text color remains black for better readability */
+  }
+  .Dark {
+    background-color: rgba(0, 0, 0, 0.919);
+    color: white;
+  }
+  .LightHeader {
+    background-color: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+  }
+  
+  .DarkHeader {
+    background: linear-gradient(45deg, rgba(21, 149, 104, 0.5) 0%, rgba(32, 182, 32, 0.8) 50%, rgba(13, 152, 145, 0.5) 100%);
+    color: #000000;
+  }
+  .BlackText {
+    color: black;
+}
+h2{
+  color: #000000;
+}
+label{
+  color: #000;
+}
+/*----------------------------------Resposive-screen------------------------------*/
+
+@media only screen and (min-width: 380px) and (max-width: 428px) {
+    body{
+    width: 90px; 
+    height: 90vh; 
+    background-image: url(threelion.jpg);
+    background-position: top center; 
+    background-repeat: no-repeat;
+    background-size: cover; 
+    }
+    .container {
+        background-color: rgba(139, 203, 116, 0.573);
+        width: 377px;
+        margin: 10% 0 0 28%;
+        padding: 2px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-left: 26px;
+        margin-top: 157px;
+        height: 250px;
+    }
+    
+    
+    input[type="text"] {
+        width: 73%;
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-left: 5px;
+    }
+    header {
+        background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+        color: #fff;
+        padding: 6px;
+        text-align: center;
+        border-radius: 0 0 50px 50px;
+         width: 392px;
+    }
+    
+    button {
+        margin-left: 20px;
+    }
+   
+
+}
+/*----------------------Responsive  14 pro max website-------------------------------------*/
+@media (min-width: 380px) and (max-width: 760px){
+  body{
+      width: 100%; /* Set body width to 100% */
+      height: 100vh;
+      background-image: url(indanpolice.jpg);
+      background-position: bottom center; 
+      background-repeat: no-repeat;
+      background-size: cover; 
+      margin: 0; /* Remove default body margin */
+      padding: 0; /* Remove default body padding */
+  }
+  .container {
+      background-color: rgba(139, 203, 116, 0.573);
+      width: 90%; /* Adjust container width to 90% of the viewport */
+      margin: 10% auto; /* Center container horizontally and set top margin */
+      padding: 2px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      height: auto; /* Adjust height to auto to fit content */
+      max-width: 400px; /* Set maximum width for container */
+  }
+
+  input[type="text"] {
+      width: calc(100% - 10px); /* Adjust input width to 100% minus padding and margin */
+      padding: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin: 5px; /* Add margin to all sides */
+  }
+
+  header {
+      background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+      color: #fff;
+      padding: 6px;
+      text-align: center;
+      border-radius: 0 0 50px 50px;
+      width: 100%; /* Set header width to 100% */
+      max-width: 420px; /* Set maximum width for header */
+      margin: 0 auto; /* Center header horizontally */
+  }
+  button {
+      margin: 0 5px; /* Add margin to button */
+  }
+  .status-result {
+    color: white; /* Change text color to dark gray */
+    font-family: Arial, sans-serif; /* Change font to Arial or any desired sans-serif font */
+    font-size: 16px; /* Adjust font size to 16 pixels */
+    background-color: #1111119a;
+}
+
+}
+
+/*-----------------------------------------Realme 85g---------------------------*/
+@media screen and (max-width: 1080px){
+  body{
+      width: 100%; /* Change width to 100% */
+      height: 100vh; 
+      background-image: url(indanpolice.jpg);
+      background-position: top center; 
+      background-repeat: no-repeat;
+      background-size: cover; 
+  }
+
+  .container {
+    position: relative; /* Set container as the relative positioning context */
+    background-color: rgb(100 137 88 / 57%);
+    width: 90%;
+    max-width: 362px;
+    margin: 10% auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: auto;
+    text-align: center; /* Center the child elements */
+    overflow: hidden; /* Ensure child elements stay within container */
+    position: relative; /* Ensure relative positioning */
+}
+  
+input[type="text"] {
+  width: calc(100% - 10px);
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 5px auto;
+  display: block;
+}
+
+  header {
+      background: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+      color: #fff;
+      padding: 6px;
+      text-align: center;
+      border-radius: 0 0 50px 50px;
+      width: 97%; /* Change width to 90% */
+      max-width: 419px; /* Added max-width for better scaling */
+      margin: 0 auto; /* Centering the header horizontally */
+      margin-bottom: 20px; /* Added margin at the bottom */
+  }
+
+  button {
+      margin: 5px auto; /* Centering the button */
+      display: block; /* Ensures button appears on a new line */
+  }
+
+  .cross-button2 {
+    position: absolute;
+    top: 27px;
+    right: 10px;
+    cursor: pointer;
+}
+
+  .cross-button2:hover {
+      color: #ff0000; /* Changed color on hover */
+  }
+  .status-result {
+    color: white; /* Change text color to dark gray */
+    font-family: Arial, sans-serif; /* Change font to Arial or any desired sans-serif font */
+    font-size: 16px; /* Adjust font size to 16 pixels */
+    background-color: #1111119a;
+}
+
+}

@@ -1,0 +1,447 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(241, 209, 150, 0.532);
+}
+
+header {
+  position: relative;
+  height: 120px; /* Adjust height as needed */
+  background: linear-gradient(45deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.5) 100%);
+  color: white;
+  text-align: center;
+  padding: 30px;
+  font-size: 24px;
+  z-index: 1; /* Ensure the header is above the slider */
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  border-radius: 0 0 50px 50px; /* Adjust border-radius for the corners */
+}
+
+/*------------------------------------------Dark mode on off ------------------------------------*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-top: -50px;
+  margin-left: 90%;
+  top: -13px;
+  visibility: hidden;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.Light {
+  background-color:  rgba(241, 209, 150, 0.532); /* Light mode background color */
+  color: black; /* Text color remains black for better readability */
+}
+.Dark {
+  background-color: rgba(0, 0, 0, 0.919);
+  color: white;
+}
+.LightHeader {
+  background-color: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.DarkHeader {
+  background: linear-gradient(45deg, rgba(21, 149, 104, 0.5) 0%, rgba(32, 182, 32, 0.8) 50%, rgba(13, 152, 145, 0.5) 100%);
+  color: #000000;
+}
+
+
+
+/*-----------------------------------------------Slider container-----------------------------------*/
+#slider-container {
+  position: relative;
+  width: 100vw;
+  height: 85vh;
+  overflow: hidden;
+}
+
+#image-slider {
+  display: flex;
+  transition: transform 1s ease-in-out; /* Slower transition */
+  height: 100%;
+}
+
+.slide {
+  flex: 1;
+  min-width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50px 50px 0 0;
+}
+.dot-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; /* Ensure dots are above the slider */
+}
+.dot {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 5px; /* Adjust spacing between dots */
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #a14e0b; /* Change active dot color */
+}
+
+/*-----------Creat Conatanier----------*/
+#create-account-container {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background:rgba(222, 194, 141, 0.51);
+  padding: 20px;
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 300px; /* Adjust width as needed */
+}
+input,
+button {
+  width: calc(100% - 40px);
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif; /* Change font family */
+  font-size: 16px; /* Change font size */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 4px; /* Add border radius */
+}
+
+button {
+  background-color: rgba(27, 145, 125, 0.785);
+  color: white;
+  border: none;
+  border-radius: 15px 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.hover:hover {
+  border-radius: 40px;
+  border: 2px solid whitesmoke;;
+}
+
+
+h2 {
+  font-family:'Times New Roman', Times, serif; /* Change font family */
+  color: #000000; /* Change text color */
+  margin-bottom: 20px; /* Add margin bottom */
+}
+
+form input::placeholder {
+  color: #999; /* Change placeholder color */
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 2px; /* Added margin top for spacing */
+}
+
+nav h1 {
+  margin: 0;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 50px;
+  color: white;
+}
+
+#verify-otp-sms-btn,
+#verify-otp-email-btn{
+  margin-left: 20px;
+}
+/* New username, Phone Number or Email, Enter OTP */
+#new-username,
+#phone-email,
+#otp{
+  font-size: 16px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.448);
+  color: white;
+  width: calc(70% - 2px); /* Adjust width */
+  border-radius: 20px;
+  margin-right: 5px; /* Adjust margin */
+}
+#new-password,
+#confirm-password{
+  background-color: rgba(0, 0, 0, 0.448);
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+#phone-email::placeholder{
+  color: white;
+}
+#new-username::placeholder {
+  color: white;
+}
+
+#otp::placeholder {
+  color: white;
+}
+#new-password::placeholder{
+  color: whitesmoke;
+}
+#confirm-password::placeholder{
+  color: whitesmoke;
+}
+
+/* Prevent autofill background color change */
+#new-username:-webkit-autofill,
+#phone-email:-webkit-autofill,
+#otp:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0.448) inset !important;
+   -webkit-text-fill-color: white;
+   
+  }
+
+  #new-username:-webkit-autofill:hover,
+  #new-username:-webkit-autofill:focus,
+  #new-username:-webkit-autofill:active{
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color:white!important;
+}
+/*-----------Creat delivery sms or phone button----------*/
+#otp-delivery-method {
+  font-size: 16px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.448);
+  color: white;
+  cursor: pointer;
+  width: 35%;
+  border-radius: 20px;
+}
+
+/* Style the dropdown arrow */
+#otp-delivery-method::after {
+  content: '\25BC';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Style the dropdown options */
+#otp-delivery-method option {
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.352);
+  color: whitesmoke;
+}
+
+/* Style the dropdown options on hover */
+#otp-delivery-method option:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Style the dropdown when it's open */
+#otp-delivery-method:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+/*--------------------eye button-----------------*/
+
+.eye-button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 30%;
+  right: 15px; /* Adjust the right position */
+  transform: translateY(-50%);
+  outline: none;
+  padding: 5px; /* Added padding */
+}
+
+.eye-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 15px; /* Adjust the right position */
+  transform: translateY(-50%);
+}
+/*-----------------------preloader-----------------*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(245, 245, 245, 0.599); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#preloader img {
+  width: 100px;
+  height: 100px;
+}
+
+/*-------------------------Responsive----------------------------*/
+@media only screen and (max-width: 768px){
+  body {
+    background-image: url(threelion.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Adjust background image size */
+   }
+  .slide {
+    flex: 1;
+    min-width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1px;
+}
+nav h1 {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 34px;
+  color: white;
+  margin-top: 49px;
+}
+ .slide img{
+  display: none;
+ }
+ .dot-container{
+  display: none;
+ }
+ #create-account-container {
+ background-color: #00000088;
+ }
+}
+
+/*-------------------------Responsive----------------------------*/
+@media only screen and (min-width: 380px) and (max-width: 428px){
+  body {
+    background-image: url(indanpolice.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Adjust background image size */
+   }
+  .slide {
+    flex: 1;
+    min-width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1px;
+}
+nav h1 {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 34px;
+  color: white;
+  margin-top: 49px;
+}
+.slide img{
+  display: none;
+ }
+ .dot-container{
+  display: none;
+ }
+ #create-account-container {
+  background-color: #000000ec;
+  }
+}
+@media only screen and (max-device-width: 1080px)
+{
+  #create-account-container {
+    background-color: rgba(134, 134, 46, 0.778);
+  }
+}
