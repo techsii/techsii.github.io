@@ -127,6 +127,16 @@ function sendOTPSMS() {
     const api_key = "880a60a1-0c46-11ef-8cbb-0200cd936042";
     let phoneOrEmail = document.getElementById("phone-email").value;
     let formattedPhoneNumber = phoneOrEmail.startsWith("+91") ? phoneOrEmail : "+91" + phoneOrEmail;
+    
+    // Check if the email/phone already exists in localStorage
+    const existingEmailOrPhone = localStorage.getItem(phoneOrEmail);
+    
+    // If the email/phone already exists, show error message and return
+    if (existingEmailOrPhone) {
+        alert('email/phone already exists. Please use a different one.');
+        return;
+    }
+
     let url = `https://2factor.in/API/V1/${api_key}/SMS/${formattedPhoneNumber}/AUTOGEN`;
     
     fetch(url)
@@ -150,6 +160,7 @@ function sendOTPSMS() {
         alert("Error sending OTP. Please try again later.");
     });
 }
+
 
 // Function to verify OTP via SMS
 function verifyOTPSMS() {
@@ -304,8 +315,41 @@ function createAccount() {
     localStorage.setItem(newUsername, newPassword);
     localStorage.setItem(newEmailOrPhone, newPassword); // Saving email/phone as key too for uniqueness
 
+    // Send confirmation email to the user
+    sendConfirmationEmail(newEmailOrPhone, newUsername, newPassword);
+
     // Redirect to the login page
-    window.location.href = 'index.html'; // Replace 'police-login.html' with the appropriate login page
+    window.location.href = 'index.html'; // Replace 'index.html' with the appropriate login page
+}
+
+function sendConfirmationEmail(email, username, password) {
+    const emailBody = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 2px solid #007bff; border-radius: 10px; background-color: #f9f9f9;">
+            <h2 style="color: #007bff; margin-bottom: 20px;">Registration Confirmation</h2>
+            <p style="color: #333; font-size: 16px;">Hello ${username},</p>
+            <p style="color: #333; font-size: 16px;">You have successfully registered on the Online Complaint Portal.</p>
+            <p style="color: #333; font-size: 16px;">Your registered email: <strong>${email}</strong></p>
+            <p style="color: #333; font-size: 16px;">Your password: <strong>${password}</strong></p>
+            <p style="color: #333; font-size: 16px;">Thank you for joining us!</p>
+        </div>
+    `;
+
+    Email.send({
+        SecureToken: "0a37ead9-1e6d-46da-aea3-d540b17b0005",
+        To: email,
+        From: "info.complainportal@gmail.com",
+        Subject: "Registration Confirmation",
+        Body: emailBody,
+        ContentType: 'text/html; charset=utf-8' // Set content type to HTML
+    }).then(
+        message => {
+            if (message === 'OK') {
+                console.log("Confirmation email sent successfully.");
+            } else {
+                console.error("Error sending confirmation email.");
+            }
+        }
+    );
 }
 
 /*-----------------------preloader-----------------*/
