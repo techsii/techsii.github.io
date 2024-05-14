@@ -122,7 +122,7 @@ function verifyOTPEmail() {
 }
 
 
-/*--------------------------------------SMS OTP Functions--------------------------------------*/
+/*--------------------------------------SMS OTP Functions--------------------------------------------------------------------------*/
 function sendOTPSMS() {
     const api_key = "880a60a1-0c46-11ef-8cbb-0200cd936042";
     let phoneOrEmail = document.getElementById("phone-email").value;
@@ -162,7 +162,7 @@ function sendOTPSMS() {
 }
 
 
-// Function to verify OTP via SMS
+/*-------------------------------------------------------verify Sms-----------------------------------------------------*/
 function verifyOTPSMS() {
     playClickSound();
     let otp_entered_by_user = document.getElementById("otp").value;
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("otp-delivery-method").value = "email";
     toggleVerifyButton(); // Call the function to toggle verify buttons accordingly
 });
-/*------------------------------------------Password Visibility Functions---------------------------------------*/
+/*------------------------------------------Password Visibility Functions----------------------------------------------------------------------*/
 function togglePasswordVisibility(inputId, eyeIconId) {
     const passwordInput = document.getElementById(inputId);
     const eyeIcon = document.getElementById(eyeIconId);
@@ -276,7 +276,7 @@ function togglePasswordFieldsVisibility() {
     document.getElementById('password-fields').style.display = 'block';
 }
 
-/*--------------------------------------Create Account Function--------------------------------------*/
+/*--------------------------------------Create Account Function---------------------------------------------------------------------*/
 function createAccount() {
     playClickSound();
 
@@ -322,17 +322,24 @@ function createAccount() {
     window.location.href = 'index.html'; // Replace 'index.html' with the appropriate login page
 }
 
+/*------------------------------------------------Confrimation emial -------------------------------------------------*/
 function sendConfirmationEmail(email, username, password) {
     const emailBody = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 2px solid #007bff; border-radius: 10px; background-color: #f9f9f9;">
-            <h2 style="color: #007bff; margin-bottom: 20px;">Registration Confirmation</h2>
-            <p style="color: #333; font-size: 16px;">Hello ${username},</p>
-            <p style="color: #333; font-size: 16px;">You have successfully registered on the Online Complaint Portal.</p>
-            <p style="color: #333; font-size: 16px;">Your registered email: <strong>${email}</strong></p>
-            <p style="color: #333; font-size: 16px;">Your password: <strong>${password}</strong></p>
-            <p style="color: #333; font-size: 16px;">Thank you for joining us!</p>
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+        <h2 style="color: #007bff; margin-bottom: 20px; text-align: center;">Registration Confirmation</h2>
+        <p style="color: #333; font-size: 16px;">Dear ${username},</p>
+        <p style="color: #333; font-size: 16px;">We are pleased to inform you that you have successfully registered on the Online Complaint Portal.</p>
+        <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <p style="color: #333; font-size: 16px; margin: 0;">Your account details:</p>
+            <ul style="list-style: none; padding: 0; margin-top: 5px;">
+                <li><strong>Email:</strong> ${email}</li>
+                <li><strong>Password:</strong> ${password}</li>
+            </ul>
         </div>
-    `;
+        <p style="color: #333; font-size: 16px;">Thank you for choosing our platform. We are excited to have you onboard!</p>
+        <p style="color: #333; font-size: 16px;">Best regards,<br>The Online Complaint Portal Team</p>
+    </div>
+`;
 
     Email.send({
         SecureToken: "0a37ead9-1e6d-46da-aea3-d540b17b0005",
@@ -352,7 +359,7 @@ function sendConfirmationEmail(email, username, password) {
     );
 }
 
-/*-----------------------preloader-----------------*/
+/*-----------------------preloader-----------------------------------------------------------------------------------*/
      var overlayloader = document.getElementById("preloader");
      window.addEventListener("load",function(){
        overlayloader.style.display ="none";
