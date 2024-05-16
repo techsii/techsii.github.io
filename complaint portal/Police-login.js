@@ -116,27 +116,21 @@ function login() {
 /*---------------------Login fuction End ----------------------*/
 
 /*---------------------Logout fuction start ----------------------*/
-
+// Logout function
 function logout() {
-
   playClickSound();
-
   localStorage.removeItem('username');
   document.getElementById('username').textContent = 'Username';
   document.getElementById('loginLink').style.display = 'inline'; // Show login link
   document.getElementById('create-account-btn').style.display = 'inline'; // Show create account button
   document.getElementById('new-button').style.display = 'none'; // Hide new button
   document.getElementById('dont-have-account').style.display = 'block'; // Show the "Don't have an account?" message
+  
+  // Hide the "Profile" option
+  document.getElementById('profile-option').style.display = 'none';
 }
 
-function checkLogin() {
-  const savedUsername = localStorage.getItem('username');
-  if (savedUsername) {
-    window.location.href = 'policefir.html';
-  }
-}
-
-// Load username from local storage when page loads
+// Check login status on window load
 window.addEventListener('load', () => {
   const savedUsername = localStorage.getItem('username');
   if (savedUsername) {
@@ -146,6 +140,12 @@ window.addEventListener('load', () => {
     document.getElementById('new-button').style.display = 'block'; // Show new button
     document.getElementById('new-button').textContent = savedUsername; // Change button text to username
     document.getElementById('dont-have-account').style.display = 'none'; // Hide the "Don't have an account?" message
+
+    // Show the "Profile" option
+    document.getElementById('profile-option').style.display = 'inline';
+  } else {
+    // Hide the "Profile" option if not logged in
+    document.getElementById('profile-option').style.display = 'none';
   }
 
   // Check if the flag indicating that the "New" button should be hidden is set in localStorage
@@ -155,6 +155,7 @@ window.addEventListener('load', () => {
     document.getElementById('new-button').style.display = 'none';
   }
 });
+
 
 /*---------------------Logout fuction End ----------------------*/
 
@@ -406,6 +407,23 @@ function createAccount() {
 }
 /*------------------------------Create Account Fuction -------------------------------------*/
 
+/*------------------------------Profile Account Fuction -------------------------------------*/
+function Profile() {
+  // Create an audio element for the click sound
+  const clickSound = new Audio('clicksound.mp3');
+  clickSound.volume = 0.8; // Adjust volume (0.0 to 1.0)
+
+  // Play the click sound
+  clickSound.play();
+
+  // Wait for the sound to finish playing before redirecting
+  clickSound.onended = function() {
+    setTimeout(function() {
+      window.location.href = 'Profile.html';
+    }, 100); 
+  };
+}
+/*------------------------------Profile Account Fuction -------------------------------------*/
 
 
 /*------------------------------Clear Fuction Start -------------------------------------*/
@@ -542,3 +560,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /*-----------------------------------------------Guide-----------------------------------*/
+
+
+/*-----------------------------------------------Profile-picture -----------------------------------*/

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="Profile.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Profile</h1>
+    </header>
+
+<div class="profile-container">
+    <div class="profile-picture-container">
+        <img id="account-icon" src="user.png" alt="Account Icon" onclick="uploadProfilePicture()">
+    </div>
+    <div id="profile-details">
+        <!-- User details -->
+    </div>
+</div>
+
+    
+
+    <footer>
+        <div class="footer-content">  
+            <!-- Footer content goes here -->
+            <p>&copy; 2024 Online Complaint Portal. All rights reserved.</p>
+            <p>Designed by: Indraneel Bhattacharjee</p>
+          </div>
+    </footer>
+
+    <input type="file" id="profile-picture-input" style="display: none;" accept="image/*">
+    <script src="Profile.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>

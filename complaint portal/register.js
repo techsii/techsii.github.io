@@ -122,7 +122,7 @@ function verifyOTPEmail() {
 }
 
 
-/*--------------------------------------SMS OTP Functions--------------------------------------------------------------------------*/
+/*--------------------------------------SMS OTP Functions--------------------------------------*/
 function sendOTPSMS() {
     const api_key = "880a60a1-0c46-11ef-8cbb-0200cd936042";
     let phoneOrEmail = document.getElementById("phone-email").value;
@@ -162,7 +162,7 @@ function sendOTPSMS() {
 }
 
 
-/*-------------------------------------------------------verify Sms-----------------------------------------------------*/
+// Function to verify OTP via SMS
 function verifyOTPSMS() {
     playClickSound();
     let otp_entered_by_user = document.getElementById("otp").value;
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("otp-delivery-method").value = "email";
     toggleVerifyButton(); // Call the function to toggle verify buttons accordingly
 });
-/*------------------------------------------Password Visibility Functions----------------------------------------------------------------------*/
+/*------------------------------------------Password Visibility Functions---------------------------------------*/
 function togglePasswordVisibility(inputId, eyeIconId) {
     const passwordInput = document.getElementById(inputId);
     const eyeIcon = document.getElementById(eyeIconId);
@@ -276,7 +276,7 @@ function togglePasswordFieldsVisibility() {
     document.getElementById('password-fields').style.display = 'block';
 }
 
-/*--------------------------------------Create Account Function---------------------------------------------------------------------*/
+/*--------------------------------------Create Account Function--------------------------------------*/
 function createAccount() {
     playClickSound();
 
@@ -285,14 +285,6 @@ function createAccount() {
     const newUsername = document.getElementById('new-username').value;
     const newEmailOrPhone = document.getElementById('phone-email').value;
 
-    // Check if the new username or email/phone already exists in localStorage;
-    const existingEmailOrPhone = localStorage.getItem(newEmailOrPhone);
-
-    // If either the username or email/phone already exists, show error message and return
-    if (existingEmailOrPhone) {
-        alert('email/phone already exists. Please use a different one.');
-        return;
-    }
 
     // Password validation rules
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
@@ -322,7 +314,6 @@ function createAccount() {
     window.location.href = 'index.html'; // Replace 'index.html' with the appropriate login page
 }
 
-/*------------------------------------------------Confrimation emial -------------------------------------------------*/
 function sendConfirmationEmail(email, username, password) {
     const emailBody = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
@@ -340,6 +331,7 @@ function sendConfirmationEmail(email, username, password) {
         <p style="color: #333; font-size: 16px;">Best regards,<br>The Online Complaint Portal Team</p>
     </div>
 `;
+
 
     Email.send({
         SecureToken: "0a37ead9-1e6d-46da-aea3-d540b17b0005",
@@ -359,7 +351,7 @@ function sendConfirmationEmail(email, username, password) {
     );
 }
 
-/*-----------------------preloader-----------------------------------------------------------------------------------*/
+/*-----------------------preloader-----------------*/
      var overlayloader = document.getElementById("preloader");
      window.addEventListener("load",function(){
        overlayloader.style.display ="none";
@@ -412,3 +404,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let savedMode = localStorage.getItem("mode");
     switchInput.checked = savedMode === "Dark";
   });
+
+
+  
