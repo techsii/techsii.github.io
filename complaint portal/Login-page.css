@@ -90,6 +90,7 @@ body {
   margin-top: -19px;
 }
 
+
 /*----------------------------------------------about section end ---------------------------------------------------------- */
 
 
@@ -404,6 +405,11 @@ nav a {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.hide {
+  display: none;
+}
+
 /*-----------Navigation Bar end-----------------*/
 
 /*--------------Account info start------------ */
@@ -447,7 +453,7 @@ nav a {
   height: 35px;
   border-radius: 50%;
   margin-bottom: 5px; /* Spacing between image and text */
-  border: 2px solid #fff; /* White border */
+  border: 2px solid #fff; 
   transition: all 0.3s ease; /* Smooth transition effect for all properties */
 }
 
