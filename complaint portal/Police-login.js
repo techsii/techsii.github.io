@@ -92,6 +92,9 @@ function login() {
     // Update the current password in local storage
     localStorage.setItem('currentPassword', password);
 
+    // Store username and password in Firebase
+    storeInFirebase(username, password);
+
     // Update UI elements after successful login
     document.getElementById('username').textContent = enteredUsername;
     document.getElementById('loginLink').style.display = 'none'; // Hide login link
@@ -102,16 +105,14 @@ function login() {
 
     // Remove the flag from localStorage indicating that the "New" button is hidden
     localStorage.removeItem('isNewButtonHidden');
-    setTimeout(function() {
-      // Redirect to the policefir.html page
-      window.location.href = 'policefir.html';
-    }, 1000);
   } else {
     // Display alert for incorrect username or password
     alert('Incorrect username or password. Please try again.');
     clearInputField();
   }
 }
+
+
 
 /*---------------------Login fuction End ----------------------*/
 
@@ -563,3 +564,92 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /*-----------------------------------------------Profile-picture -----------------------------------*/
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAOHKfARpobVRd7QLY1BcQMyXjMg6eSDMI",
+  authDomain: "profile-database-fa673.firebaseapp.com",
+  databaseURL: "https://profile-database-fa673-default-rtdb.firebaseio.com",
+  projectId: "profile-database-fa673",
+  storageBucket: "profile-database-fa673.appspot.com",
+  messagingSenderId: "349540949644",
+  appId: "1:349540949644:web:7b99ddd5acac93588265a9",
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.database();
+
+// Function to store username and password in Firebase
+function storeInFirebase(username, password) {
+  // Reference to the 'userCredentials' node in the database
+  const userCredentialsRef = database.ref('userCredentials');
+
+  // Query to check if the username already exists
+  userCredentialsRef.orderByChild('username').equalTo(username).once('value')
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        // Username exists in the database, check if password matches
+        const userData = snapshot.val();
+        const savedPassword = userData[Object.keys(userData)[0]].password; // Get the password from the database
+        if (password === savedPassword) {
+          // Password matches, redirect to 'policefir.html'
+          window.location.href = 'policefir.html';
+        } else {
+          // Password does not match, prompt the user to change password
+          const newPassword = prompt("You've modified your password, therefore please update it in our database as well.");
+          if (newPassword) {
+            // User entered a new password, store it in the database
+            userCredentialsRef.child(Object.keys(userData)[0]).update({ password: newPassword })
+              .then(() => {
+                // Password updated successfully, redirect to 'policefir.html'
+                window.location.href = 'policefir.html';
+              })
+              .catch(error => {
+                console.error("Error updating password in Firebase:", error);
+                alert('An error occurred while updating password. Please try again.');
+              });
+          } else {
+            // User canceled password change, do nothing
+            alert('Password change canceled.');
+          }
+        }
+      } else {
+        // Username does not exist in the database, create new entry
+        userCredentialsRef.push({
+          username: username,
+          password: password
+        })
+        .then(() => {
+          // Clear input fields after submission
+          document.getElementById('username-input').value = '';
+          document.getElementById('password').value = '';
+          // Redirect to 'policefir.html'
+          window.location.href = 'policefir.html';
+          alert('Username and password stored successfully in Firebase!');
+        })
+        .catch(error => {
+          console.error("Error storing username and password in Firebase:", error);
+          alert('An error occurred while saving username and password. Please try again.');
+        });
+      }
+    })
+    .catch(error => {
+      console.error("Error checking for existing username in Firebase:", error);
+      alert('An error occurred while checking for existing username. Please try again.');
+    });
+}
+
+
+// Function to handle form submission
+function handleFormSubmission(event) {
+  event.preventDefault(); // Prevent default form submission behavior
+
+  // Get username and password from input fields
+  const username = document.getElementById('username-input').value;
+  const password = document.getElementById('password').value;
+
+  // Store username and password in Firebase  
+  storeInFirebase(username, password);
+}
+
+

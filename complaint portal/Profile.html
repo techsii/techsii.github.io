@@ -5,32 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="Profile.css"> <!-- Link to your CSS file -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
 </head>
 <body>
     <header>
-        <h1>Welcome to Your Profile</h1>
+        <h1>Explore Your Profile</h1>
     </header>
 
-<div class="profile-container">
-    <div class="profile-picture-container">
-        <img id="account-icon" src="user.png" alt="Account Icon" onclick="uploadProfilePicture()">
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-picture-container">
+                <!-- Profile picture with onclick event to trigger file input -->
+                <img id="account-icon" src="user.png" alt="Account Icon">
+                <img id="edit-icon" src="edit.png" alt="Edit Icon" onclick="document.getElementById('profile-picture-input').click()">
+                <input type="file" id="profile-picture-input" style="display:none" onchange="uploadProfilePicture(event)">
+            </div>
+            <div id="profile-details">
+                <!-- User details -->
+                <h2>Profile Details</h2>
+                <h3>Username: <span id="username-firebase">Loading...</span></h3>
+                <h3>Password: <span id="password-firebase">Loading...</span></h3>
+            </div>
+        </div>
     </div>
-    <div id="profile-details">
-        <!-- User details -->
-    </div>
-</div>
-
-    
 
     <footer>
         <div class="footer-content">  
             <!-- Footer content goes here -->
             <p>&copy; 2024 Online Complaint Portal. All rights reserved.</p>
             <p>Designed by: Indraneel Bhattacharjee</p>
-          </div>
+        </div>
     </footer>
 
-    <input type="file" id="profile-picture-input" style="display: none;" accept="image/*">
     <script src="Profile.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
