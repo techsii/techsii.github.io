@@ -449,6 +449,21 @@ function Profile() {
     }, 100); 
   };
 }
+function profilepicure(){
+  // Create an audio element for the click sound
+  const clickSound = new Audio('clicksound.mp3');
+  clickSound.volume = 0.8; // Adjust volume (0.0 to 1.0)
+
+  // Play the click sound
+  clickSound.play();
+
+  // Wait for the sound to finish playing before redirecting
+  clickSound.onended = function() {
+    setTimeout(function() {
+      window.location.href = 'Profile.html';
+    }, 100); 
+  };
+}
 /*------------------------------Profile Account Fuction -------------------------------------*/
 
 
