@@ -60,58 +60,61 @@ function clearInputField() {
 }
 
 function login() {
-  // Play the click sound immediately when the user clicks the login button
   const clickSound = document.getElementById('clickSound');
   if (clickSound) {
-    clickSound.volume = 0.8; // Adjust volume (0.0 to 1.0)
+    clickSound.volume = 0.8; 
     clickSound.play();
   }
 
-  // Retrieve username and password from input fields
   const enteredUsername = document.getElementById('username-input').value;
   const password = document.getElementById('password').value;
-
-  // Convert the entered username to lowercase
   const username = enteredUsername.toLowerCase();
 
-  // Check if the entered username or password is empty
   if (username === '' || password === '') {
-    // Display alert if username or password is empty
     alert('Please enter both username and password.');
-    return; // Exit the function if username or password is empty
+    return;
   }
 
-  // Retrieve saved password from localStorage based on the lowercase username
   const savedPassword = localStorage.getItem(username);
 
-  // Check if the entered password matches the saved password
   if (password === savedPassword) {
-    // Save the username to local storage only if login is successful
     localStorage.setItem('username', username);
-
-    // Update the current password in local storage
     localStorage.setItem('currentPassword', password);
 
-    // Store username and password in Firebase
     storeInFirebase(username, password);
 
-    // Update UI elements after successful login
-    document.getElementById('username').textContent = enteredUsername;
-    document.getElementById('loginLink').style.display = 'none'; // Hide login link
-    document.getElementById('create-account-btn').style.display = 'none'; // Hide create account button
-    document.getElementById('new-button').style.display = 'block'; // Show new button
-    document.getElementById('new-button').textContent = enteredUsername; // Change button text to username
-    document.getElementById('dont-have-account').style.display = 'none'; // Hide the "Don't have an account?" message
+    const userCredentialsRef = database.ref('userCredentials');
+    userCredentialsRef.orderByChild('username').equalTo(username).once('value')
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          const userData = snapshot.val();
+          const firebaseData = Object.values(userData)[0];
+          const profilePictureURL = firebaseData.profilePictureURL;
 
-    // Remove the flag from localStorage indicating that the "New" button is hidden
+          if (profilePictureURL) {
+            document.getElementById('user-img').src = profilePictureURL;
+          } else {
+            document.getElementById('user-img').src = 'default-profile.png';
+          }
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching profile picture URL:", error);
+        document.getElementById('user-img').src = 'default-profile.png';
+      });
+
+    document.getElementById('username').textContent = enteredUsername;
+    document.getElementById('loginLink').style.display = 'none';
+    document.getElementById('create-account-btn').style.display = 'none';
+    document.getElementById('new-button').style.display = 'block';
+    document.getElementById('new-button').textContent = enteredUsername;
+    document.getElementById('dont-have-account').style.display = 'none';
     localStorage.removeItem('isNewButtonHidden');
   } else {
-    // Display alert for incorrect username or password
     alert('Incorrect username or password. Please try again.');
     clearInputField();
   }
 }
-
 
 
 /*---------------------Login fuction End ----------------------*/
@@ -129,33 +132,55 @@ function logout() {
   
   // Hide the "Profile" option
   document.getElementById('profile-option').style.display = 'none';
+  
+ setTimeout(() => {
+   window.location.reload();
+ }, 1000);
 }
 
-// Check login status on window load
+
 window.addEventListener('load', () => {
   const savedUsername = localStorage.getItem('username');
   if (savedUsername) {
     document.getElementById('username').textContent = savedUsername;
-    document.getElementById('loginLink').style.display = 'none'; // Hide login link
-    document.getElementById('create-account-btn').style.display = 'none'; // Hide create account button
-    document.getElementById('new-button').style.display = 'block'; // Show new button
-    document.getElementById('new-button').textContent = savedUsername; // Change button text to username
-    document.getElementById('dont-have-account').style.display = 'none'; // Hide the "Don't have an account?" message
+    document.getElementById('loginLink').style.display = 'none';
+    document.getElementById('create-account-btn').style.display = 'none';
+    document.getElementById('new-button').style.display = 'block';
+    document.getElementById('new-button').textContent = savedUsername;
+    document.getElementById('dont-have-account').style.display = 'none';
 
-    // Show the "Profile" option
+    const userCredentialsRef = database.ref('userCredentials');
+    userCredentialsRef.orderByChild('username').equalTo(savedUsername).once('value')
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          const userData = snapshot.val();
+          const firebaseData = Object.values(userData)[0];
+          const profilePictureURL = firebaseData.profilePictureURL;
+
+          if (profilePictureURL) {
+            document.getElementById('user-img').src = profilePictureURL;
+          } else {
+            document.getElementById('user-img').src = 'user.png'; // Set default image
+          }
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching profile picture URL:", error);
+        document.getElementById('user-img').src = 'user.png'; // Set default image
+      });
+
     document.getElementById('profile-option').style.display = 'inline';
   } else {
-    // Hide the "Profile" option if not logged in
     document.getElementById('profile-option').style.display = 'none';
   }
 
-  // Check if the flag indicating that the "New" button should be hidden is set in localStorage
   const isNewButtonHidden = localStorage.getItem('isNewButtonHidden');
   if (isNewButtonHidden === 'true') {
-    // Hide the "New" button if the flag is set
     document.getElementById('new-button').style.display = 'none';
   }
 });
+
+
 
 
 /*---------------------Logout fuction End ----------------------*/
@@ -576,7 +601,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
+const storage = firebase.storage();
 const database = firebase.database();
 
 // Function to store username and password in Firebase
@@ -593,23 +618,33 @@ function storeInFirebase(username, password) {
         const savedPassword = userData[Object.keys(userData)[0]].password; // Get the password from the database
         if (password === savedPassword) {
           // Password matches, redirect to 'policefir.html'
-          window.location.href = 'policefir.html';
+          setTimeout(() => {
+            window.location.href = 'policefir.html';
+          }, 1000); // Delay redirection by 1 second
         } else {
           // Password does not match, prompt the user to change password
-          const newPassword = prompt("You've modified your password, therefore please update it in our database as well.");
+          const newPassword =  prompt("You've modified your password, therefore please update it in our database as well. \nEnter your current password to proceed:");
           if (newPassword) {
-            // User entered a new password, store it in the database
-            userCredentialsRef.child(Object.keys(userData)[0]).update({ password: newPassword })
-              .then(() => {
-                // Password updated successfully, redirect to 'policefir.html'
-                window.location.href = 'policefir.html';
-              })
-              .catch(error => {
-                console.error("Error updating password in Firebase:", error);
-                alert('An error occurred while updating password. Please try again.');
-              });
+            // Check if the entered password matches the one stored in local storage
+            if (newPassword === password) {
+              // Update the password in the database
+              userCredentialsRef.child(Object.keys(userData)[0]).update({ password: newPassword })
+                .then(() => {
+                  // Password updated successfully, redirect to 'policefir.html'
+                  setTimeout(() => {
+                    window.location.href = 'policefir.html';
+                  }, 1000); // Delay redirection by 1 second
+                })
+                .catch(error => {
+                  console.error("Error updating password in Firebase:", error);
+                  alert('An error occurred while updating password. Please try again.');
+                });
+            } else {
+              // Entered password does not match the one stored in local storage, show an alert
+              alert('Entered password does not match your current password. Password change canceled.');
+            }
           } else {
-            // User canceled password change, do nothing
+            // User canceled password change, show an alert message
             alert('Password change canceled.');
           }
         }
@@ -624,8 +659,10 @@ function storeInFirebase(username, password) {
           document.getElementById('username-input').value = '';
           document.getElementById('password').value = '';
           // Redirect to 'policefir.html'
-          window.location.href = 'policefir.html';
-          alert('Username and password stored successfully in Firebase!');
+          setTimeout(() => {
+            window.location.href = 'policefir.html';
+          }, 1000); // Delay redirection by 1 second
+          alert('successfully You login');
         })
         .catch(error => {
           console.error("Error storing username and password in Firebase:", error);
@@ -639,7 +676,6 @@ function storeInFirebase(username, password) {
     });
 }
 
-
 // Function to handle form submission
 function handleFormSubmission(event) {
   event.preventDefault(); // Prevent default form submission behavior
@@ -651,5 +687,6 @@ function handleFormSubmission(event) {
   // Store username and password in Firebase  
   storeInFirebase(username, password);
 }
+
 
 

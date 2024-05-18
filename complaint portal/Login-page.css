@@ -428,23 +428,22 @@ nav a {
 }
 
 #account-info {
-  /* Existing styles */
   position: absolute;
-  top: 20px;
+  top: 12px;
   right: 40px;
   bottom: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(245, 222, 179, 0.522); /* Light gray background */
-  border: 1px solid #ddd; /* Light gray border */
-  border-radius: 15px; /* Rounded shape */
-  padding: 10px 20px; /* Padding */
-  font-family: Arial, sans-serif; /* Font family */
-  height: 60px;
-  transition: all 0.3s ease; /* Smooth transition effect for all properties */
+  background-color: rgba(245, 222, 179, 0.522);
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  height: 70px;
+  transition: all 0.3s ease;
   cursor: pointer;
-  animation: heartbeat 2s infinite; /* Apply heartbeat animation with a slower duration */
+  animation: heartbeat 2s infinite;
 }
 
 
@@ -796,6 +795,32 @@ margin: 0;
 }
 
 /*-------------------footer End-------------*/
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Styling for the profile picture */
+#user-img {
+  width: 150px; /* Width of the profile picture */
+  height: 150px; /* Height of the profile picture */
+  border-radius: 50%; /* Circular profile picture */
+  object-fit: cover; /* Ensures the image covers the entire area */
+  border: 2px solid #ddd; /* Light border around the picture */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
+}
+
+/* Optional: Styling for a placeholder image if the user doesn't have a profile picture */
+#user-img.default {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #aaa; /* Placeholder text color */
+  font-size: 14px; /* Placeholder text size */
+}
 
 /*------------------------------------------Realme 85g--------------------------------------*/
 @media only screen and (max-device-width: 1080px) {

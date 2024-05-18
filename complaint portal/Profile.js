@@ -97,7 +97,7 @@ function uploadProfilePicture(event) {
                         return updateProfilePictureURL(savedUsername, downloadURL);
                     }).then(() => {
                         // Display success message
-                        alert("Profile picture successfully updated!");
+                        alert("Your Profile picture successfully uploaded!");
                     }).catch((error) => {
                         console.error("Error uploading profile picture:", error);
                     });
