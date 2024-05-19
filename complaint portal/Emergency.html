@@ -11,9 +11,16 @@
     <link rel="stylesheet" href="Emergency5.css">
 </head>
 <body>
-
+    <div  id="preloader">
+        <img src="preloader.gif" alt="">
+      </div>
 <header class="header sticky">
+    
     <div class="container-fluid space grey">
+        <label class="switch">
+            <input type="checkbox" class="bTn"> <!-- Adding the class "bTn" to the input for event handling -->
+            <span class="slider round"></span>
+          </label>
         <div class="row flexbox-center">
             <div class="col-lg-10 col-md-9 col-10">
                 <ul class="list-unstyled">
@@ -36,6 +43,7 @@
             </div>
         </div>
     </div>
+    
 </header>
 
 <section class="hero-area ptb-130" id="home">
@@ -164,6 +172,54 @@
 <script>
     $(document).ready(function () {
     });
+
+    /*-----------------------preloader-----------------*/
+var overlayloader = document.getElementById("preloader");
+window.addEventListener("load", function(){
+  overlayloader.style.display ="none";
+});
+/*-----------------------preloader-----------------*/
+/*--------------------------------------------Light Dark--------------------------------------------*/
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the body and header elements
+    let body = document.querySelector("body");
+    let header = document.querySelector("header");
+    let head = document.querySelector("header");
+  
+    // Function to toggle mode
+    function toggleMode() {
+      body.classList.toggle("Light");
+      body.classList.toggle("Dark");
+      header.classList.toggle("LightHeader");
+      header.classList.toggle("DarkHeader");
+  
+      
+      // Store the current mode in local storage
+      let mode = body.classList.contains("Dark") ? "Dark" : "Light";
+      localStorage.setItem("mode", mode);
+    }
+  
+    // Function to set mode based on local storage
+    function setModeFromLocalStorage() {
+      let savedMode = localStorage.getItem("mode");
+      if (savedMode === "Dark") {
+        toggleMode();
+      }
+    }
+  
+    // Add event listener to the switch
+    let switchInput = document.querySelector(".bTn");
+    switchInput.addEventListener("change", function() {
+      toggleMode();
+    });
+  
+    // Set mode from local storage on page load
+    setModeFromLocalStorage();
+  
+    // Check the switch based on the initial mode
+    let savedMode = localStorage.getItem("mode");
+    switchInput.checked = savedMode === "Dark";
+  });
 </script>
 
 </body>

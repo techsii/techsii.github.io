@@ -72,3 +72,9 @@ document.addEventListener("DOMContentLoaded", function() {
     switchInput.checked = savedMode === "Dark";
   });
   
+  /*-----------------------preloader-----------------*/
+var overlayloader = document.getElementById("preloader");
+window.addEventListener("load", function(){
+  overlayloader.style.display ="none";
+});
+/*-----------------------preloader-----------------*/

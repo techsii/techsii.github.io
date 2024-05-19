@@ -128,3 +128,50 @@ function updateProfilePictureURL(username, url) {
             console.error('Error fetching user credentials from Firebase:', error);
         });
 }
+/*-----------------------preloader-----------------*/
+var overlayloader = document.getElementById("preloader");
+window.addEventListener("load", function(){
+  overlayloader.style.display ="none";
+});
+/*-----------------------preloader-----------------*/
+/*--------------------------------------------Light Dark--------------------------------------------*/
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the body and header elements
+    let body = document.querySelector("body");
+    let header = document.querySelector("header");
+    let head = document.querySelector("header");
+  
+    // Function to toggle mode
+    function toggleMode() {
+      body.classList.toggle("Light");
+      body.classList.toggle("Dark");
+      header.classList.toggle("LightHeader");
+      header.classList.toggle("DarkHeader");
+  
+      
+      // Store the current mode in local storage
+      let mode = body.classList.contains("Dark") ? "Dark" : "Light";
+      localStorage.setItem("mode", mode);
+    }
+  
+    // Function to set mode based on local storage
+    function setModeFromLocalStorage() {
+      let savedMode = localStorage.getItem("mode");
+      if (savedMode === "Dark") {
+        toggleMode();
+      }
+    }
+  
+    // Add event listener to the switch
+    let switchInput = document.querySelector(".bTn");
+    switchInput.addEventListener("change", function() {
+      toggleMode();
+    });
+  
+    // Set mode from local storage on page load
+    setModeFromLocalStorage();
+  
+    // Check the switch based on the initial mode
+    let savedMode = localStorage.getItem("mode");
+    switchInput.checked = savedMode === "Dark";
+  });
