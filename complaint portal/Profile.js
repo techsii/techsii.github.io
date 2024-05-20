@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
 
-                    // Show image preview container and save button when the file input changes
-                    document.getElementById('profile-picture-input').addEventListener('change', function() {
+                    // Show image preview container and save button when the edit button is clicked
+                    document.getElementById('edit-icon').addEventListener('click', function() {
                         document.getElementById('image-preview-container').style.display = 'block';
                         document.getElementById('save-btn').style.display = 'block';
                     });
