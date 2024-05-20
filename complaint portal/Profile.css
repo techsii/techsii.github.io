@@ -240,25 +240,25 @@ input[type="file"] {
   border: .5rem solid transparent;
   background-clip: content-box;
 }
-/* Profile picture container */
-.profile-container {
-  position: relative;
-}
 
 /* Image preview container */
 #image-preview-container {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 90%;
   height: 300px; /* Adjust height as needed */
   margin-top: 20px; /* Add margin to separate from profile details */
   border: 2px dashed #ccc; /* Add border to indicate drop area */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Save button */
 #save-btn {
-  display: block;
+  display: none;
   margin: 205px auto;
   padding: 10px 20px;
   background-color: #007bff;
@@ -267,19 +267,16 @@ input[type="file"] {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-#save-btn:hover {
-  background-color: #0056b3; /* Darker shade of blue on hover */
-}
-#image-preview-container,
-#save-btn {
-  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#save-btn:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
 
 /*-----------------------preloader-----------------*/
 #preloader {
