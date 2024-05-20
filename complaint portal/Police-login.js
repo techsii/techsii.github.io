@@ -191,16 +191,61 @@ function someFunction() {
   // Play the click sound immediately
   playClickSound();
 
-  // Wait for 1 second before redirecting to policefir.html
-  setTimeout(function() {
-    const savedUsername = localStorage.getItem('username');
-    if (savedUsername) {
-      // User is logged in, perform action for logged-in users
-      window.location.href = 'policefir.html'; 
-    } else {
-      // You can add any other action here if needed
-    }
-  }, 1000);
+  // Check if the username is stored in local storage
+  const savedUsername = localStorage.getItem('username');
+  if (savedUsername) {
+    // Username is found in local storage, proceed to check password
+    const savedPassword = localStorage.getItem('currentPassword');
+    const userCredentialsRef = database.ref('userCredentials');
+    
+    // Query Firebase to get the user's password
+    userCredentialsRef.orderByChild('username').equalTo(savedUsername).once('value')
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          const userData = snapshot.val();
+          const firebasePassword = userData[Object.keys(userData)[0]].password;
+          
+          if (savedPassword !== firebasePassword) {
+            // Password in local storage does not match the one in Firebase
+            // Prompt the user to enter the current password
+            const newPassword = prompt("You've modified your password. Please enter your current password to update it.");
+            if (newPassword) {
+              // Check if the entered password matches the one stored in local storage
+              if (newPassword === savedPassword) {
+                // Update the password in Firebase
+                userCredentialsRef.child(Object.keys(userData)[0]).update({ password: newPassword })
+                  .then(() => {
+                    // Password updated successfully, redirect to 'policefir.html'
+                    window.location.href = 'policefir.html'; 
+                  })
+                  .catch(error => {
+                    console.error("Error updating password in Firebase:", error);
+                    alert('An error occurred while updating password. Please try again.');
+                  });
+              } else {
+                // Entered password does not match the one stored in local storage
+                alert('Entered password does not match your current password. Password change canceled.');
+              }
+            } else {
+              // User canceled password change
+              alert('Password change canceled.');
+            }
+          } else {
+            setTimeout(() => {
+              window.location.href = 'policefir.html'; 
+            },1000);
+          }
+        } else {
+          // User data not found in Firebase, handle this case as needed
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching user data from Firebase:", error);
+        // Handle error retrieving user data from Firebase
+      });
+  } else {
+    // Username not found in local storage, handle this case as needed
+  }
 }
 
 
