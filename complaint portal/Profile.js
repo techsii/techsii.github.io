@@ -47,6 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             alert("Incorrect password. Please try again.");
                         }
                     });
+
+                    // Show image preview container and save button when the file input changes
+                    document.getElementById('profile-picture-input').addEventListener('change', function() {
+                        document.getElementById('image-preview-container').style.display = 'block';
+                        document.getElementById('save-btn').style.display = 'block';
+                    });
                 } else {
                     document.getElementById('username-firebase').textContent = 'Not found';
                     document.getElementById('password-firebase').textContent = 'Not found';
@@ -62,51 +68,96 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Define a global variable for the Cropper instance
+let cropper;
+
 function uploadProfilePicture(event) {
     const file = event.target.files[0]; // Get the selected file
     const savedUsername = localStorage.getItem('username');
     
     if (file && savedUsername) {
-        const storageRef = storage.ref();
-        const userProfilePicRef = storageRef.child('profile_pictures/' + savedUsername + '/' + file.name);
-        
-        // Retrieve the URL of the current profile picture
-        const userCredentialsRef = database.ref('userCredentials');
-        userCredentialsRef.orderByChild('username').equalTo(savedUsername).once('value')
-            .then(snapshot => {
-                if (snapshot.exists()) {
-                    const userData = snapshot.val();
-                    const firebaseData = Object.values(userData)[0];
-                    const currentProfilePicURL = firebaseData.profilePictureURL;
-                    
-                    // If a previous profile picture exists, delete it
-                    if (currentProfilePicURL) {
-                        const previousPicRef = storage.refFromURL(currentProfilePicURL);
-                        previousPicRef.delete().then(() => {
-                            console.log("Previous profile picture deleted successfully.");
-                        }).catch((error) => {
-                            console.error("Error deleting previous profile picture:", error);
-                        });
-                    }
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            // Create an image element
+            const img = document.createElement('img');
+            img.src = e.target.result;
 
-                    // Upload the new profile picture
-                    userProfilePicRef.put(file).then((snapshot) => {
-                        return snapshot.ref.getDownloadURL();
-                    }).then((downloadURL) => {
-                        document.getElementById('account-icon').src = downloadURL; // Set the src attribute of account icon to the selected image
-                        return updateProfilePictureURL(savedUsername, downloadURL);
-                    }).then(() => {
-                        // Display success message
-                        alert("Your Profile picture successfully uploaded!");
-                    }).catch((error) => {
-                        console.error("Error uploading profile picture:", error);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching user credentials from Firebase:', error);
+            // Append the image to the preview container
+            const container = document.getElementById('image-preview-container');
+            container.innerHTML = '';
+            container.appendChild(img);
+
+            // Initialize Cropper on the image
+            cropper = new Cropper(img, {
+                aspectRatio: 1, // Set aspect ratio as needed
+                viewMode: 1, // Set view mode as needed
+                // Add any other Cropper options as needed
             });
+        };
+        reader.readAsDataURL(file);
     }
+}
+
+// Handle 'Save' button click to set the cropped image as profile picture
+document.getElementById('save-btn').addEventListener('click', function () {
+    const savedUsername = localStorage.getItem('username');
+    const file = document.getElementById('profile-picture-input').files[0]; // Get the selected file again
+
+    if (cropper && file && savedUsername) {
+        const canvas = cropper.getCroppedCanvas();
+        if (canvas) {
+            canvas.toBlob(function (blob) {
+                // Upload the cropped image to Firebase
+                const userProfilePicRef = storage.ref().child('profile_pictures/' + savedUsername + '/' + file.name);
+                userProfilePicRef.put(blob).then((snapshot) => {
+                    return snapshot.ref.getDownloadURL();
+                }).then((downloadURL) => {
+                    // Update profile picture URL in the database
+                    return updateProfilePictureURL(savedUsername, downloadURL);
+                }).then(() => {
+                    // Delete the old profile picture from storage
+                    deleteOldProfilePicture(savedUsername);
+                    // Display success message
+                    alert("Your Profile picture successfully uploaded and set!");
+                    // Reload the window after clicking OK on the alert
+                    window.location.reload();
+                }).catch((error) => {
+                    console.error("Error uploading profile picture:", error);
+                });
+            });
+        }
+    }
+});
+
+function deleteOldProfilePicture(username) {
+    const userCredentialsRef = database.ref('userCredentials');
+    userCredentialsRef.orderByChild('username').equalTo(username).once('value')
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                const userKey = Object.keys(snapshot.val())[0];
+                const userData = snapshot.val()[userKey];
+                const oldProfilePicURL = userData.profilePictureURL;
+                if (oldProfilePicURL) {
+                    // Get reference to the old profile picture in storage
+                    const oldProfilePicRef = storage.refFromURL(oldProfilePicURL);
+                    // Delete the old profile picture
+                    oldProfilePicRef.delete().then(() => {
+                        console.log("Old profile picture deleted successfully.");
+                        // Update profile picture URL in the database to null
+                        userCredentialsRef.child(userKey).update({ profilePictureURL: null });
+                    }).catch((error) => {
+                        console.error("Error deleting old profile picture:", error);
+                    });
+                } else {
+                    console.log("No old profile picture found.");
+                }
+            } else {
+                console.log("User not found in database.");
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user credentials from Firebase:', error);
+        });
 }
 
 function updateProfilePictureURL(username, url) {
@@ -128,6 +179,8 @@ function updateProfilePictureURL(username, url) {
             console.error('Error fetching user credentials from Firebase:', error);
         });
 }
+
+
 /*-----------------------preloader-----------------*/
 var overlayloader = document.getElementById("preloader");
 window.addEventListener("load", function(){

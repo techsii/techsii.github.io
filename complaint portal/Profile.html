@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="Profile.css"> <!-- Link to your CSS file -->
+    <!-- Include Cropper.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <!-- Firebase scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
@@ -13,8 +17,8 @@
     <div  id="preloader">
         <img src="preloader.gif" alt="">
       </div>
-      
-    <header>
+
+     <header>
         <h1>Explore Your Profile</h1>
         <label class="switch">
             <input type="checkbox" class="bTn"> <!-- Adding the class "bTn" to the input for event handling -->
@@ -28,6 +32,7 @@
                 <!-- Profile picture with onclick event to trigger file input -->
                 <img id="account-icon" src="user.png" alt="Account Icon">
                 <img id="edit-icon" src="edit.png" alt="Edit Icon" onclick="document.getElementById('profile-picture-input').click()">
+                <!-- Input to select profile picture -->
                 <input type="file" id="profile-picture-input" style="display:none" onchange="uploadProfilePicture(event)">
             </div>
             <div id="profile-details">
@@ -37,16 +42,26 @@
                 <h3>Password: <span id="password-firebase">Loading...</span></h3>
             </div>
         </div>
+        <!-- Image preview container -->
+        <div id="image-preview-container"></div>
+        <!-- Save button to confirm profile picture upload -->
+        <button id="save-btn">Save</button>
     </div>
 
     <footer>
-        <div class="footer-content">  
-            <!-- Footer content goes here -->
-            <p>&copy; 2024 Online Complaint Portal. All rights reserved.</p>
-            <p>Designed by: Indraneel Bhattacharjee</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <p>&copy; 2024 Online Complaint Portal. All rights reserved.</p>
+                <p>Designed by: Indraneel Bhattacharjee</p>
+            </div>
+            <div class="footer-section">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
         </div>
     </footer>
-
-    <script src="Profile.js"></script> <!-- Link to your JavaScript file -->
+    <!-- Link to your JavaScript file -->
+    <script src="Profile.js"></script>
 </body>
 </html>

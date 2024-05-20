@@ -7,7 +7,7 @@
 
 /* Global styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   line-height: 1.6;
   background-image: url('profile.jpg'); /* Replace 'profile.jpg' with the path to your background image */
   background-size: cover; /* Cover the entire background */
@@ -15,8 +15,6 @@ body {
   background-repeat: no-repeat; /* Do not repeat the background image */
   color: #333;
 }
-
-
 
 .container {
   max-width: 1200px;
@@ -39,7 +37,7 @@ header {
   z-index: 1;
   box-sizing: border-box;
   border-bottom: 1px solid #fff;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 50px 50px;
   transition: background-color 0.3s ease;
 }
 
@@ -47,23 +45,21 @@ header:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Main content styles */
 .profile-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 20px;
-  background-color: #fff;
   border-radius: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 30vh auto;
   width: 50%;
   transition: transform 0.3s ease;
   position: relative; /* Ensure positioning context for absolute positioning of inner elements */
   overflow: hidden; /* Hide any overflowing content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ededed8e, #d1d1d1a2);
 }
-
 .profile-container:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
@@ -106,19 +102,42 @@ header:hover {
 
 /* Footer styles */
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 0;
-  background-color: #333;
+  background-color: #333333af;
   color: #fff;
   text-align: center;
-  transition: background-color 0.3s ease;
+  padding: 20px 0;
+  width: 100%;
+  border-radius: 50px 50px 0  0;
+
 }
 
-footer:hover {
-  background-color: #222;
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  margin: 10px 0;
+}
+
+.footer-section p {
+  margin: 5px 0;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #007bff;
+}
+
+
+.footer-section a:hover {
+  color: #007bff; /* Change color on hover */
 }
 
 .profile-picture {
@@ -131,7 +150,6 @@ footer:hover {
   height: 20px;
 }
 
-/* Additional styles for hover effects */
 #edit-icon:hover {
   transform: scale(1.1);
   cursor: pointer;
@@ -145,17 +163,8 @@ footer:hover {
   transform: translateY(-3px);
 }
 
-/* Gradient background for profile container */
-.profile-container {
-  background: linear-gradient(135deg, #ffffff, #f2f2f2);
-}
 
-/* Drop shadow for profile container */
-.profile-container {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-/* Animated footer content */
 .footer-content {
   transition: opacity 0.3s ease;
 }
@@ -164,7 +173,6 @@ footer:hover .footer-content {
   opacity: 0.8;
 }
 
-/* Animated button styles */
 button {
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -173,21 +181,18 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
 
-input[type="file"] {
-  display: none;
+.profile-container:before {
+  content: ''; /* Create a pseudo-element */
+  position: absolute; /* Position relative to the profile container */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent overlay */
+  z-index: -1; /* Behind other content */
+  transition: opacity 0.3s ease; /* Smooth transition */
+  opacity: 0; /* Initially transparent */
 }
-
-/* Hover effect for password */
-#password-firebase:hover {
-  color: #0056b3; /* Change the color on hover */
-  font-weight: bold;
-}
-#username-firebase:hover {
-  font-weight: bold; /* Change the font weight on hover */
-  color: #0056b3;
-}
-
-/* Additional hover effect for profile container */
 .profile-container:hover:before {
   content: ''; /* Create a pseudo-element */
   position: absolute; /* Position relative to the profile container */
@@ -201,18 +206,81 @@ input[type="file"] {
   opacity: 0.5; /* Dim the overlay on hover */
 }
 
-
-/* Additional hover effect for profile container */
 .profile-container:hover:after {
-  opacity: 0.2; /* Show radial gradient on hover */
+  opacity: 0.5;
 }
 
+input[type="file"] {
+  display: none;
+}
 
-/* Gradient background for profile container */
-/* Gradient background for profile container */
+#password-firebase:hover {
+  color: #0056b3; /* Change the color on hover */
+  font-weight: bold;
+}
+
+#username-firebase:hover {
+  font-weight: bold; /* Change the font weight on hover */
+  color: #0056b3;
+}
+/*------------- webkit-scroller--------- */
+::-webkit-scrollbar{
+  width: 20px;
+  height: 5px;
+}
+::-webkit-scrollbar-track{
+  background-color:rgba(0, 0, 0, 0.842);
+  width: 20px;
+  
+}
+::-webkit-scrollbar-thumb{
+  height: 5px; /* Adjust the height as needed */
+  background-color: rgba(50, 143, 229, 0.682);
+  border-radius: 10px;
+  border: .5rem solid transparent;
+  background-clip: content-box;
+}
+/* Profile picture container */
 .profile-container {
-  background: linear-gradient(135deg, #ededed8e, #d1d1d1a2); /* Professional gradient background */
+  position: relative;
 }
+
+/* Image preview container */
+#image-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 300px; /* Adjust height as needed */
+  margin-top: 20px; /* Add margin to separate from profile details */
+  border: 2px dashed #ccc; /* Add border to indicate drop area */
+}
+
+/* Save button */
+#save-btn {
+  display: block;
+  margin: 205px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#save-btn:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
+#image-preview-container,
+#save-btn {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /*-----------------------preloader-----------------*/
 #preloader {
   position: fixed;
@@ -324,7 +392,6 @@ input:checked + .slider:before {
   color: white; /* Change color to white in dark mode */
 }
 
-
 /*------------------------------------------------- Responsive styles--------------------------------------------- */
 @media (max-width: 768px) {
   body {
@@ -386,6 +453,7 @@ input:checked + .slider:before {
   }
   footer {
     font-size: 14px;
+    margin-top: 6px;
   }
 }
 
