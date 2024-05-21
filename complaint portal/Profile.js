@@ -100,6 +100,9 @@ function uploadProfilePicture(event) {
 
 // Handle 'Save' button click to set the cropped image as profile picture
 document.getElementById('save-btn').addEventListener('click', function () {
+    // Play the click sound
+    document.getElementById('clickSound').play();
+
     const savedUsername = localStorage.getItem('username');
     const file = document.getElementById('profile-picture-input').files[0]; // Get the selected file again
 
