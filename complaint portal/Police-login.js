@@ -325,130 +325,131 @@ function sendEmail() {
   // Check if any field is empty
   if (name.trim() === '' || email.trim() === '' || issue.trim() === '' || message.trim() === '') {
     alert('Please fill in all fields.');
-    // Clear input fields after sending the email
-    clearInputFields();
     return;
   }
 
   // Construct the email body with improved formatting
- const emailBodyMain = `
- <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-    <h2 style="color: #333; margin-bottom: 20px;">New Support Request</h2>
-    <div style="margin-bottom: 20px;">
-    <strong>Name:</strong> ${name}<br>
-    <strong>Email:</strong> ${email}
- </div>
-  <div style="margin-bottom: 20px;">
-     <strong>Issue:</strong><br>
-     ${issue}
-  </div>
-  <div>
-     <strong>Message:</strong><br>
-      ${message}
-  </div>
-  <hr style="margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid #ccc;">
-  <div style="margin-bottom: 20px;">
-     <h3 style="color: #333; margin-bottom: 10px;">New Results:</h3>
-     <p><strong>New report :</strong> From User </p>
-  </div>
-  </div>
-`;
-
-// Construct the email body for CC recipient
-let emailBodyCc;
-if (issue.toLowerCase().includes("login") || issue.toLowerCase().includes("reset") || issue.toLowerCase().includes("Reset") || issue.toLowerCase().includes("Access")) {
-  emailBodyCc = `
+  const emailBodyMain = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-      <h3 style="color: #333; margin-bottom: 10px;">Your Issue is Resolved</h3>
-      <p style="color: #007bff;">Your login problem has been resolved successfully.</p>
-      <div style="text-align: center;">
-        <p style="color: #343a40; font-weight: bold; font-style: italic;">Please click the 'Reset Account' button within one hour.</p>
-        <a href="https://reset-account.vercel.app/" style="text-decoration: none;">
-          <button style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
-            Reset the Account
-          </button>
-        </a>
+      <h2 style="color: #333; margin-bottom: 20px;">New Support Request</h2>
+      <div style="margin-bottom: 20px;">
+        <strong>Name:</strong> ${name}<br>
+        <strong>Email:</strong> ${email}
+      </div>
+      <div style="margin-bottom: 20px;">
+        <strong>Issue:</strong><br>
+        ${issue}
+      </div>
+      <div>
+        <strong>Message:</strong><br>
+        ${message}
+      </div>
+      <hr style="margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid #ccc;">
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #333; margin-bottom: 10px;">New Results:</h3>
+        <p><strong>New report :</strong> From User </p>
       </div>
     </div>
   `;
-} else {
-  emailBodyCc = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-      <h3 style="color: #333; margin-bottom: 10px;">Your Issue is Resolved</h3>
-      <p style="color: #007bff;">Your issue has been resolved successfully.</p>
-      <h3> Contact Us </h3>
-      <p style="color: #007bff;"> help.complainportal@gmail.com </p>
-    </div>
-  `;
-}
 
-// Use Email.send() function to send the email to main recipient
+  // Construct the email body for CC recipient
+  let emailBodyCc;
+  if (issue.toLowerCase().includes("login") || issue.toLowerCase().includes("reset") || issue.toLowerCase().includes("access")) {
+    emailBodyCc = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+        <h3 style="color: #333; margin-bottom: 10px;">Your Issue is Resolved</h3>
+        <p style="color: #007bff;">Your login problem has been resolved successfully.</p>
+        <div style="text-align: center;">
+          <p style="color: #343a40; font-weight: bold; font-style: italic;">Please click the 'Reset Account' button within one hour.</p>
+          <a href="https://reset-account.vercel.app/" style="text-decoration: none;">
+            <button style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+              Reset the Account
+            </button>
+          </a>
+        </div>
+      </div>
+    `;
+  } else {
+    emailBodyCc = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+        <h3 style="color: #333; margin-bottom: 10px;">Your Issue is Resolved</h3>
+        <p style="color: #007bff;">Your issue has been resolved successfully.</p>
+        <h3>Contact Us</h3>
+        <p style="color: #007bff;">help.complainportal@gmail.com</p>
+      </div>
+    `;
+  }
+
+  // Use Email.send() function to send the email to main recipient
   Email.send({
-  Host: "smtp.elasticemail.com", // SMTP host
-  Username: "help.complainportal@gmail.com", // SMTP username
-  Password: "9A09A0B6DD8332BDE732A4AC4746C3620E31", // SMTP password
-  To: 'info.complainportal@gmail.com', // Main recipient email address
-  From: "help.complainportal@gmail.com", // Sender email address (user-provided)
-  Subject: `New Support Request`, // Subject line
-  Body: emailBodyMain, // Email body for main recipient
-  ContentType: 'text/html; charset=utf-8' // Set content type to HTML
-}) .then(
-   function(response) {
-    // Check if the email is sent successfully
-    if (response && response.status === 'OK') {
-      // Show a success message
-      alert("Failed to send message. Please try again later.");
-    } else {
-      // Show an error message if the email failed to send
-      alert("Message sent successfully!");
+    Host: "smtp.elasticemail.com",
+    Username: "help.complainportal@gmail.com",
+    Password: "9A09A0B6DD8332BDE732A4AC4746C3620E31",
+    To: 'info.complainportal@gmail.com',
+    From: "help.complainportal@gmail.com",
+    Subject: `New Support Request`,
+    Body: emailBodyMain,
+    ContentType: 'text/html; charset=utf-8'
+  }).then(
+    function(response) {
+      // Check if the email is sent successfully
+      if (response === 'OK') {
+        // Show a success message
+        alert("Message sent successfully!");
+
+        // Send the CC email
+        sendCcEmail(email, emailBodyCc);
+
+        // Clear input fields after sending the email
+        clearInputFields();
+      } else {
+        // Show an error message if the email failed to send
+        alert("Failed to send message. Please try again later.");
+      }
     }
-  }
-) .catch(
-   function(error) {
-    // Log any errors to the console
-    console.error('Error:', error);
-    // Show an error message to the user
-    alert('An error occurred while sending the message. Please try again later.');
-  }
-);
-
-// Use Email.send() function to send the email to CC recipient
-Email.send({
-  Host: "smtp.elasticemail.com", // SMTP host
-  Username: "help.complainportal@gmail.com", // SMTP username
-  Password: "9A09A0B6DD8332BDE732A4AC4746C3620E31", // SMTP password
-  To: email, // CC recipient email address
-  From: "help.complainportal@gmail.com", // Sender email address (user-provided)
-  Subject: `Issue Resolved`, // Subject line
-  Body: emailBodyCc, // Email body for CC recipient
-  ContentType: 'text/html; charset=utf-8' // Set content type to HTML
-}).then(
-  function(response) {
-    // Check if the email is sent successfully
-    if (response && response.status === 'OK') {
-      // Show a success message
-      console.log("CC email sent successfully!");
-    } else {
-      // Show an error message if the email failed to send
-      console.error("Failed to send CC email.");
+  ).catch(
+    function(error) {
+      // Log any errors to the console
+      console.error('Error:', error);
+      // Show an error message to the user
+      alert('An error occurred while sending the message. Please try again later.');
     }
-  }
-).catch(
-  function(error) {
-    // Log any errors to the console
-    console.error('Error:', error);
-  }
-);
+  );
 
-// Clear input fields after sending the email
-clearInputFields();
-
-// Prevent the default form submission behavior
-return false;
-
+  // Prevent the default form submission behavior
+  return false;
 }
 
-/*-------------------Devloper feedback or Any issue ENd ----------------------*/
+function sendCcEmail(to, body) {
+  Email.send({
+    Host: "smtp.elasticemail.com",
+    Username: "help.complainportal@gmail.com",
+    Password: "9A09A0B6DD8332BDE732A4AC4746C3620E31",
+    To: to,
+    From: "help.complainportal@gmail.com",
+    Subject: `Issue Resolved`,
+    Body: body,
+    ContentType: 'text/html; charset=utf-8'
+  }).then(
+    function(response) {
+      // Check if the email is sent successfully
+      if (response === 'OK') {
+        // Log success message for CC email
+        console.log("CC email sent successfully!");
+      } else {
+        // Log an error message if the CC email failed to send
+        console.error("Failed to send CC email.");
+      }
+    }
+  ).catch(
+    function(error) {
+      // Log any errors to the console
+      console.error('Error:', error);
+    }
+  );
+}
+
+/*-------------------Devloper feedback or Any issue End ----------------------*/
 
 /*------------------------------Click Sound -------------------------------------*/
 function playClickSound() {
