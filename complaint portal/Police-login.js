@@ -75,47 +75,107 @@ function login() {
     return;
   }
 
+  // Check in local storage first
   const savedPassword = localStorage.getItem(username);
 
-  if (password === savedPassword) {
-    localStorage.setItem('username', username);
-    localStorage.setItem('currentPassword', password);
+  if (savedPassword) {
+    if (password === savedPassword) {
+      localStorage.setItem('username', username);
+      localStorage.setItem('currentPassword', password);
 
-    storeInFirebase(username, password);
+      // Fetch profile picture URL from Firebase
+      fetchProfilePictureFromFirebase(username);
 
+      document.getElementById('username').textContent = enteredUsername;
+      document.getElementById('loginLink').style.display = 'none';
+      document.getElementById('create-account-btn').style.display = 'none';
+      document.getElementById('new-button').style.display = 'block';
+      document.getElementById('new-button').textContent = enteredUsername;
+      document.getElementById('dont-have-account').style.display = 'none';
+      localStorage.removeItem('isNewButtonHidden');
+
+      // Store in Firebase if needed (e.g., updating the last login time)
+      storeInFirebase(username, password);
+    } else {
+      alert('Incorrect password. Please try again.');
+      clearInputField();
+    }
+  } else {
+    // Check in Firebase if not found in local storage
     const userCredentialsRef = database.ref('userCredentials');
     userCredentialsRef.orderByChild('username').equalTo(username).once('value')
       .then(snapshot => {
         if (snapshot.exists()) {
           const userData = snapshot.val();
-          const firebaseData = Object.values(userData)[0];
-          const profilePictureURL = firebaseData.profilePictureURL;
+          const firebasePassword = Object.values(userData)[0].password;
 
-          if (profilePictureURL) {
-            document.getElementById('user-img').src = profilePictureURL;
+          if (password === firebasePassword) {
+            localStorage.setItem('username', username);
+            localStorage.setItem('currentPassword', password);
+
+            const profilePictureURL = Object.values(userData)[0].profilePictureURL;
+
+            if (profilePictureURL) {
+              document.getElementById('user-img').src = profilePictureURL;
+            } else {
+              document.getElementById('user-img').src = 'default-profile.png';
+            }
+
+            document.getElementById('username').textContent = enteredUsername;
+            document.getElementById('loginLink').style.display = 'none';
+            document.getElementById('create-account-btn').style.display = 'none';
+            document.getElementById('new-button').style.display = 'block';
+            document.getElementById('new-button').textContent = enteredUsername;
+            document.getElementById('dont-have-account').style.display = 'none';
+            localStorage.removeItem('isNewButtonHidden');
+
+            // Store in Firebase if needed (e.g., updating the last login time)
+            storeInFirebase(username, password);
           } else {
-            document.getElementById('user-img').src = 'default-profile.png';
+            alert('Incorrect password. Please try again.');
+            clearInputField();
           }
+        } else {
+          alert('Username not found. Please try again.');
+          clearInputField();
         }
       })
       .catch(error => {
-        console.error("Error fetching profile picture URL:", error);
-        document.getElementById('user-img').src = 'default-profile.png';
+        console.error("Error fetching username and password from Firebase:", error);
+        alert('An error occurred while checking the username and password. Please try again.');
       });
-
-    document.getElementById('username').textContent = enteredUsername;
-    document.getElementById('loginLink').style.display = 'none';
-    document.getElementById('create-account-btn').style.display = 'none';
-    document.getElementById('new-button').style.display = 'block';
-    document.getElementById('new-button').textContent = enteredUsername;
-    document.getElementById('dont-have-account').style.display = 'none';
-    localStorage.removeItem('isNewButtonHidden');
-  } else {
-    alert('Incorrect username or password. Please try again.');
-    clearInputField();
   }
 }
 
+// Function to clear input fields
+function clearInputField() {
+  document.getElementById('username-input').value = '';
+  document.getElementById('password').value = '';
+}
+
+// Function to fetch profile picture from Firebase
+function fetchProfilePictureFromFirebase(username) {
+  const userCredentialsRef = database.ref('userCredentials');
+  userCredentialsRef.orderByChild('username').equalTo(username).once('value')
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        const profilePictureURL = Object.values(userData)[0].profilePictureURL;
+
+        if (profilePictureURL) {
+          document.getElementById('user-img').src = profilePictureURL;
+        } else {
+          document.getElementById('user-img').src = 'default-profile.png';
+        }
+      } else {
+        document.getElementById('user-img').src = 'default-profile.png';
+      }
+    })
+    .catch(error => {
+      console.error("Error fetching profile picture URL from Firebase:", error);
+      document.getElementById('user-img').src = 'default-profile.png';
+    });
+}
 
 /*---------------------Login fuction End ----------------------*/
 
