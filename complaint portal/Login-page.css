@@ -839,7 +839,7 @@ margin: 0;
 
   #nav-hed {
     padding: 0;
-    font-size: 12px;
+    font-size: 10px;
     width: 210px;
   }
   
@@ -873,9 +873,9 @@ margin: 0;
 
   #account-info {
     top: 5px;
-    right: 15px;
-    height: 30px;
-    width: 36px;
+    right: 10px;
+    height: 51%; /* Allow the height to adjust automatically */
+    width: auto;  /* Allow the width to adjust automatically */
     padding: 5px;
     font-size: 8px;
     display: flex;
@@ -884,17 +884,18 @@ margin: 0;
   }
 
   #account-info img {
-    width: 15px;           
-    height: 15px;           
-    margin-bottom: 3px;  
-    border-width: 1px;    
-  } 
+    width: 15px;
+    height: 15px;
+    margin-bottom: 3px;
+    border-width: 1px;
+  }
 
   #account-info span {
-    font-size: 0.8em;
-    margin-top: 2px;
-}
-
+    font-size: 4px;
+    margin-top: 7px;
+    display: block;
+  }
+  
   #user-img {
     margin-bottom: 5px;
   }
@@ -956,7 +957,7 @@ margin: 0;
  #new-button {
     margin-top: 15px;
     position: relative;
-    left: -3px;
+    left: -6px;
     margin-left: 15px;
  }
 
