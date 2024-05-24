@@ -21,7 +21,8 @@ function trackStatus(complaintId) {
     
       if (complaintData) {
           // Display the complaint details
-          var statusMessage = "<h3>Complaint Status: "  + complaintData.status + "</h3>";
+          var status = complaintData.status || "Pending"; // Set default status to "Pending" if no status is provided
+          var statusMessage = "<h3>Complaint Status: "  + status + "</h3>"; // Include the status in the message
           statusMessage += "<p><strong>Complainant Name:</strong> " + complaintData.complainantName + "</p>";
           statusMessage += "<p><strong>Complainant Email:</strong> " + complaintData.complainantEmail + "</p>";
           statusMessage += "<p><strong>Complainant Phone:</strong> " + complaintData.complainantPhone + "</p>";
@@ -33,6 +34,7 @@ function trackStatus(complaintId) {
       }
   });
 }
+
 
 
 // Event listener for the track button
