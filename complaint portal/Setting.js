@@ -1,32 +1,28 @@
-// Function to retrieve the current password from local storage
-function getCurrentPassword() {
-  return localStorage.getItem('currentPassword');
-}
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAOHKfARpobVRd7QLY1BcQMyXjMg6eSDMI",
+  authDomain: "profile-database-fa673.firebaseapp.com",
+  databaseURL: "https://profile-database-fa673-default-rtdb.firebaseio.com",
+  projectId: "profile-database-fa673",
+  storageBucket: "profile-database-fa673.appspot.com",
+  messagingSenderId: "349540949644",
+  appId: "1:349540949644:web:7b99ddd5acac93588265a9",
+};
 
-// Function to check if the user is logged in
-function isUserLoggedIn() {
-  // Check if the user is logged in based on your application logic
-  // For example, you might check if certain data is present in local storage to determine if the user is logged in
-  return localStorage.getItem('username') !== null;
-}
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 
-// Function to handle setting the password
-function setPassword() {
+// Function to handle form submission
+document.getElementById('change-password-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission behavior
+
   const newUsername = document.getElementById('new-username').value;
   const currentPassword = document.getElementById('current-password').value;
   const newPassword = document.getElementById('new-password').value;
   const confirmPassword = document.getElementById('confirm-password').value;
 
-  // Retrieve saved username and password from local storage
-  const savedUsername = localStorage.getItem('username');
-  const savedPassword = localStorage.getItem(savedUsername);
-
-  // Retrieve the current password from local storage
-  const currentStoredPassword = getCurrentPassword();
-
-  // Validate current password
-  if (currentPassword !== currentStoredPassword) {
-    alert('Current password is incorrect.');
+  if (newPassword !== confirmPassword) {
+    alert("New password and confirm password do not match.");
     return;
   }
 
@@ -41,27 +37,47 @@ function setPassword() {
     return;
   }
 
-  // Validate new password and confirm password match
-  if (newPassword !== confirmPassword) {
-    alert('New password and confirm password do not match.');
-    return;
-  }
+  changePassword(newUsername, currentPassword, newPassword);
+});
 
-  // Save new username and password to local storage
-  localStorage.setItem('username', newUsername);
-  localStorage.setItem(newUsername, newPassword);
+// Function to change password
+function changePassword(username, currentPassword, newPassword) {
+  const userCredentialsRef = database.ref('userCredentials');
 
-  alert('Username and password changed successfully.');
+  userCredentialsRef.orderByChild('username').equalTo(username).once('value')
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        const userId = Object.keys(userData)[0];
+        const savedPassword = userData[userId].password;
 
-  // Redirect to the Police-login.html page
-  window.location.href = 'index.html';
+        if (currentPassword === savedPassword) {
+          // Update password in database
+          userCredentialsRef.child(userId).update({ password: newPassword })
+            .then(() => {
+              alert('Password updated successfully.');
+              // Wait for 1 second before redirecting
+              setTimeout(() => {
+                window.location.href = 'index.html';
+              }, 1000);
+            })
+            .catch(error => {
+              console.error("Error updating password in Firebase:", error);
+              alert('An error occurred while updating password. Please try again.');
+            });
+        } else {
+          alert('Current password is incorrect.');
+        }
+      } else {
+        alert('Username does not exist.');
+      }
+    })
+    .catch(error => {
+      console.error("Error changing password:", error);
+      alert('An error occurred. Please try again.');
+    });
 }
 
-// Add event listener to the change password form
-document.getElementById('change-password-form').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent default form submission
-  setPassword(); // Call the setPassword function when the form is submitted
-});
 
 // Function to play click sound
 function playClickSound() {

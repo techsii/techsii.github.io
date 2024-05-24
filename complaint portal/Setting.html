@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="settings.css">
-    
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
 </head>
 <body>
     <div  id="preloader">
         <img src="preloader.gif" alt="">
-      </div>
+      </div>    
     <header>
         <h2>Reset Password</h2>
         <label class="switch">
             <input type="checkbox" class="bTn"> <!-- Adding the class "bTn" to the input for event handling -->
             <span class="slider round"></span>
-          </label>
+        </label>
     </header>
 
-    <form id="change-password-form">
+    <form id="change-password-form" onsubmit="handleFormSubmission(event)">
         <input type="text" id="new-username" placeholder="Registered Email / Phone No" required><br>
         <input type="password" id="current-password" placeholder="Current Password" required><br>
         <input type="password" id="new-password" placeholder="New Password" required><br>
@@ -39,7 +39,7 @@
     <audio id="clickSound">
         <source src="clicksound.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
-      </audio>
+    </audio>
     <script src="Setting.js"></script>
     
 </body>

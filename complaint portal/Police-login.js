@@ -53,7 +53,6 @@ function togglePasswordVisibility() {
 
 
 /*---------------------Login fuction start ----------------------*/
-
 function login() {
   const clickSound = document.getElementById('clickSound');
   if (clickSound) {
