@@ -385,6 +385,43 @@ input:checked + .slider:before {
   color: red;
     font-style: italic;
 }
+
+/* CSS for status dropdown */
+#statusDropdown {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+#statusDropdown:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Styling for dropdown options */
+#statusDropdown option {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Hover effect for options */
+#statusDropdown option:hover {
+  background-color: #f0f0f0;
+}
+
+/* Styling for selected option */
+#statusDropdown option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
+
 /*---------------------------------Responsive Website ----------------------------*/
 @media only screen and (max-width: 768px) {
   /* Adjust header padding and font size for smaller screens */

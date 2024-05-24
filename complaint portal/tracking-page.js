@@ -12,46 +12,28 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
-// Function to generate a random complaint status
-// Function to generate a random complaint status
-function generateRandomStatus() {
-  var statuses = ['Pending', 'In Progress', 'Resolved', 'Closed'];
-  
-  // Shuffle the array
-  for (var i = statuses.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      [statuses[i], statuses[j]] = [statuses[j], statuses[i]];
-  }
-  
-  // Return the first status
-  return statuses[0];
-}
-
-
 // Function to track complaint status
 function trackStatus(complaintId) {
-    var complaintRef = database.ref('complaints/' + complaintId);
-  
-    complaintRef.once('value', function(snapshot) {
-        var complaintData = snapshot.val();
-      
-        if (complaintData) {
-            // Generate a random status
-            var randomStatus = generateRandomStatus();
-            
-            // Display the randomly generated status with complainant details
-            var statusMessage = "<h3>Complaint Status: " + randomStatus + "</h3>";
-            statusMessage += "<p><strong>Complainant Name:</strong> " + complaintData.complainantName + "</p>";
-            statusMessage += "<p><strong>Complainant Email:</strong> " + complaintData.complainantEmail + "</p>";
-            statusMessage += "<p><strong>Complainant Phone:</strong> " + complaintData.complainantPhone + "</p>";
-            
-            document.getElementById('statusResult').innerHTML = statusMessage;
-        } else {
-            // If complaint data doesn't exist, display an error message
-            document.getElementById('statusResult').textContent = "Complaint ID not found";
-        }
-    });
+  var complaintRef = database.ref('complaints/' + complaintId);
+
+  complaintRef.once('value', function(snapshot) {
+      var complaintData = snapshot.val();
+    
+      if (complaintData) {
+          // Display the complaint details
+          var statusMessage = "<h3>Complaint Status: "  + complaintData.status + "</h3>";
+          statusMessage += "<p><strong>Complainant Name:</strong> " + complaintData.complainantName + "</p>";
+          statusMessage += "<p><strong>Complainant Email:</strong> " + complaintData.complainantEmail + "</p>";
+          statusMessage += "<p><strong>Complainant Phone:</strong> " + complaintData.complainantPhone + "</p>";
+          
+          document.getElementById('statusResult').innerHTML = statusMessage;
+      } else {
+          // If complaint data doesn't exist, display an error message
+          document.getElementById('statusResult').textContent = "Complaint ID not found";
+      }
+  });
 }
+
 
 // Event listener for the track button
 document.getElementById('trackBtn').addEventListener('click', function(event) {
@@ -69,7 +51,18 @@ document.getElementById('trackBtn').addEventListener('click', function(event) {
   
     trackStatus(complaintId);
 });
+// Function to clear complaint details
+function clearComplaintDetails() {
+  document.getElementById('complaintId').value = ""; // Clear the input field
+  // Clear the displayed complaint details
+  document.getElementById("statusResult").innerHTML = "";
+}
 
+
+
+
+
+/*--------------------------------------------Light Dark--------------------------------------------*/
 document.addEventListener("DOMContentLoaded", function() {
   // Get the body and header elements
   let body = document.querySelector("body");
@@ -121,9 +114,3 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// Function to clear complaint details
-function clearComplaintDetails() {
-    document.getElementById('complaintId').value = ""; // Clear the input field
-    // Clear the displayed complaint details
-    document.getElementById("statusResult").innerHTML = "";
-}

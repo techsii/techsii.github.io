@@ -150,7 +150,6 @@ function copyComplaintId(complaintId) {
 }
 
 /*-----------------------------------------------------Compaint fetch the paragrah------------------------------------------------*/
-// Function to fetch total details for a complaint ID
 function fetchComplaintDetails2() {
   const input = document.getElementById('complaintIdInput').value.trim();
   let queryField, queryValue;
@@ -176,6 +175,17 @@ function fetchComplaintDetails2() {
       const complaintId = Object.keys(complaintData)[0]; // Get the complaint ID from the object keys
       const complaint = complaintData[complaintId];
 
+      // Construct the HTML for the status dropdown
+      const statusDropdownHTML = `
+        <select id="statusDropdown" onchange="updateStatus('${complaintId}', this.value)">
+          <option value="Pending" ${complaint.status === 'Pending' ? 'selected' : ''}>Pending</option>
+          <option value="In-progress" ${complaint.status === 'In-progress' ? 'selected' : ''}>In-progress</option>
+          <option value="Resolved" ${complaint.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
+          <option value="Close" ${complaint.status === 'Close' ? 'selected' : ''}>Close</option>
+        </select>
+      `;
+
+      // Display complaint details along with the status dropdown
       complaintDetailsDiv.innerHTML = `
         <p><strong>Complaint ID:</strong> ${complaint.complaintId}</p>
         <p><strong>Complainant Name:</strong> ${complaint.complainantName}</p>
@@ -189,12 +199,28 @@ function fetchComplaintDetails2() {
         <p><strong>Incident Type:</strong> ${complaint.incidentType}</p>
         <p><strong>Summary:</strong> ${complaint.summary}</p>
         <p><strong>Incident Description:</strong> ${complaint.incidentDescription}</p>
+        <p><strong>Status:</strong> ${statusDropdownHTML}</p>
       `;
     } else {
       // If no complaint details found, display an error message
       alert("No details found for the provided input.");
     }
   });
+}
+
+// Function to update status in real-time in Firebase database
+function updateStatus(complaintId, newStatus) {
+  const complaintRef = database.ref('complaints/' + complaintId);
+  complaintRef.update({ status: newStatus })
+    .then(() => {
+      // Success message
+      alert('Status updated successfully.');
+    })
+    .catch(error => {
+      // Error message
+      console.error("Error updating status:", error);
+      alert("Error updating status. Please try again later.");
+    });
 }
 
 // Get reference to the input field
