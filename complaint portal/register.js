@@ -344,7 +344,7 @@ function sendConfirmationEmail(email, username, password) {
         <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
             <p style="color: #333; font-size: 16px; margin: 0;">Your account details:</p>
             <ul style="list-style: none; padding: 0; margin-top: 5px;">
-                <li><strong>Registered Email / Phone No:</strong> ${email}</li>
+                <li><strong>Registered Email:</strong> ${email}</li>
                 <li><strong>Password:</strong> ${password}</li>
             </ul>
         </div>
