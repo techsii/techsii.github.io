@@ -37,68 +37,89 @@ function updateDots() {
 setInterval(nextSlide, 8000);
 
 /*--------------------------------------Email OTP Functions--------------------------------------*/
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyAOHKfARpobVRd7QLY1BcQMyXjMg6eSDMI",
+    authDomain: "profile-database-fa673.firebaseapp.com",
+    databaseURL: "https://profile-database-fa673-default-rtdb.firebaseio.com",
+    projectId: "profile-database-fa673",
+    storageBucket: "profile-database-fa673.appspot.com",
+    messagingSenderId: "349540949644",
+    appId: "1:349540949644:web:7b99ddd5acac93588265a9",
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
 function sendOTPEmail() {
-    document.getElementById("send-otp-btn").disabled = true; 
+    document.getElementById("send-otp-btn").disabled = true;
     const newEmailOrPhone = document.getElementById('phone-email').value;
 
-    // Check if the email/phone already exists in localStorage
-    const existingEmailOrPhone = localStorage.getItem(newEmailOrPhone);
-
-    // If the email/phone already exists, show error message and return
-    if (existingEmailOrPhone) {
-        alert('email/phone already exists. Please use a different one.');
-        document.getElementById("send-otp-btn").disabled = false;
-        return;
-    }
-    var seconds = 120;
-    timerInterval = setInterval(function () {
-        seconds--;
-        var minutes = Math.floor(seconds / 60);
-        var remainingSeconds = seconds % 60;
-        if (remainingSeconds < 10) {
-            remainingSeconds = "0" + remainingSeconds;
-        }
-        document.getElementById("timer").innerHTML = minutes + ":" + remainingSeconds;
-        if (seconds <= 0) {
-            clearInterval(timerInterval);
-            document.getElementById("send-otp-btn").disabled = false;
-            document.getElementById("timer").innerHTML = "";
-            sessionStorage.removeItem('otp');
-        }
-    }, 1000);
-
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    console.log("Generated OTP:", otp);
-    const email = document.getElementById('phone-email').value;
-
-    let emailBody = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 2px solid #007bff; border-radius: 10px; background-color: #f9f9f9;">
-            <h2 style="color: #007bff; margin-bottom: 20px;">OTP Verification</h2>
-            <p style="color: #333; font-size: 16px;">Your OTP is: <strong>${otp}</strong></p>
-        </div>
-    `;
-
-    Email.send({
-        SecureToken: "0a37ead9-1e6d-46da-aea3-d540b17b0005",
-        To: newEmailOrPhone,
-        From: "info.complainportal@gmail.com",
-        Subject: "OTP Verification",
-        Body: emailBody,
-        ContentType: 'text/html; charset=utf-8' // Set content type to HTML
-    }).then(
-        message => {
-            if (message === 'OK') {
-                alert("OTP sent successfully. Check your email.");
-                sessionStorage.setItem('otp', otp);
-            } else {
-                alert("Error sending OTP. Please try again later.");
-                clearInterval(timerInterval);
-                document.getElementById("timer").innerHTML = "";
+    // Check if the email/phone already exists in the Firebase database
+    database.ref('userCredentials').orderByChild('username').equalTo(newEmailOrPhone)
+        .once('value')
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                // Username (email/phone) already exists
+                alert('Email/phone already exists. Please use a different one.');
                 document.getElementById("send-otp-btn").disabled = false;
+            } else {
+                // Username doesn't exist, proceed with sending OTP
+                var seconds = 120;
+                timerInterval = setInterval(function () {
+                    seconds--;
+                    var minutes = Math.floor(seconds / 60);
+                    var remainingSeconds = seconds % 60;
+                    if (remainingSeconds < 10) {
+                        remainingSeconds = "0" + remainingSeconds;
+                    }
+                    document.getElementById("timer").innerHTML = minutes + ":" + remainingSeconds;
+                    if (seconds <= 0) {
+                        clearInterval(timerInterval);
+                        document.getElementById("send-otp-btn").disabled = false;
+                        document.getElementById("timer").innerHTML = "";
+                        sessionStorage.removeItem('otp');
+                    }
+                }, 1000);
+
+                const otp = Math.floor(100000 + Math.random() * 900000);
+                console.log("Generated OTP:", otp);
+
+                let emailBody = `
+                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 2px solid #007bff; border-radius: 10px; background-color: #f9f9f9;">
+                        <h2 style="color: #007bff; margin-bottom: 20px;">OTP Verification</h2>
+                        <p style="color: #333; font-size: 16px;">Your OTP is: <strong>${otp}</strong></p>
+                    </div>
+                `;
+
+                Email.send({
+                    SecureToken: "0a37ead9-1e6d-46da-aea3-d540b17b0005",
+                    To: newEmailOrPhone,
+                    From: "info.complainportal@gmail.com",
+                    Subject: "OTP Verification",
+                    Body: emailBody,
+                    ContentType: 'text/html; charset=utf-8' // Set content type to HTML
+                }).then(
+                    message => {
+                        if (message === 'OK') {
+                            alert("OTP sent successfully. Check your email.");
+                            sessionStorage.setItem('otp', otp);
+                        } else {
+                            alert("Error sending OTP. Please try again later.");
+                            clearInterval(timerInterval);
+                            document.getElementById("timer").innerHTML = "";
+                            document.getElementById("send-otp-btn").disabled = false;
+                        }
+                    }
+                );
             }
-        }
-    );
+        })
+        .catch((error) => {
+            console.error('Error checking username existence:', error);
+            alert('An error occurred. Please try again later.');
+            document.getElementById("send-otp-btn").disabled = false;
+        });
 }
+
 
 function verifyOTPEmail() {
     playClickSound();
