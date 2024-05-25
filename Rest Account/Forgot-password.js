@@ -1,3 +1,17 @@
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyAOHKfARpobVRd7QLY1BcQMyXjMg6eSDMI",
+    authDomain: "profile-database-fa673.firebaseapp.com",
+    databaseURL: "https://profile-database-fa673-default-rtdb.firebaseio.com",
+    projectId: "profile-database-fa673",
+    storageBucket: "profile-database-fa673.appspot.com",
+    messagingSenderId: "349540949644",
+    appId: "1:349540949644:web:7b99ddd5acac93588265a9",
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+
 // Show the "Forgot Password" section initially
 document.getElementById('forgot-password-section').style.display = 'block';
 document.getElementById('email-or-username-forgot').style.display = 'block';
@@ -116,27 +130,52 @@ document.getElementById('forgot-password-form').addEventListener('submit', funct
     const newPassword = document.getElementById('new-password-fogot').value;
     const confirmPassword = document.getElementById('confirm-password-forgot').value;
 
+    // Password validation rules
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
     // Validate new password
     if (!passwordRegex.test(newPassword)) {
         alert('Password must contain at least 8 characters, including one uppercase letter, one number, and one special character (!@#$%^&*)');
         // Highlight the password field in red
-        document.getElementById('new-password').style.color = 'red';
+        document.getElementById('new-password-fogot').style.color = 'red';
         return;
     }
 
     // Check if passwords match
     if (newPassword === confirmPassword) {
-        // Save new username and password to localStorage
-        localStorage.setItem(newUsername, newPassword); // Save new username with new password
-
-        alert('Password reset successfully.');
-
-        // Redirect to login page
-        window.location.href = 'index.html';
+        // Check if username exists in Firebase
+        const userCredentialsRef = firebase.database().ref('userCredentials');
+        userCredentialsRef.orderByChild('username').equalTo(newUsername).once('value')
+            .then(snapshot => {
+                if (snapshot.exists()) {
+                    // Username exists, update password
+                    const userData = snapshot.val();
+                    const userId = Object.keys(userData)[0];
+                    userCredentialsRef.child(userId).update({ password: newPassword })
+                        .then(() => {
+                            localStorage.setItem(newUsername, newPassword);
+                            alert('Password reset successfully.');
+                            // Redirect to login page
+                            window.location.href = 'index.html';
+                        })
+                        .catch(error => {
+                            console.error("Error updating password in Firebase:", error);
+                            alert('An error occurred while updating password. Please try again.');
+                        });
+                } else {
+                    // Username does not exist
+                    alert('Username does not exist.');
+                }
+            })
+            .catch(error => {
+                console.error("Error checking username in Firebase:", error);
+                alert('An error occurred. Please try again.');
+            });
     } else {
         alert('New password and confirm password do not match.');
     }
 });
+
 
 
 /*------------------------------Click Sound -------------------------------------*/
@@ -154,3 +193,44 @@ window.addEventListener("load", function(){
     overlayloader.style.display ="none";
 });
 /*-----------------------preloader-----------------*/
+
+/*--------------------------------------------Light Dark--------------------------------------------*/
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the body and header elements
+    let body = document.querySelector("body");
+    let header = document.querySelector("header");
+  
+    // Function to toggle mode
+    function toggleMode() {
+      body.classList.toggle("Light");
+      body.classList.toggle("Dark");
+      header.classList.toggle("LightHeader");
+      header.classList.toggle("DarkHeader");
+  
+      // Store the current mode in local storage
+      let mode = body.classList.contains("Dark") ? "Dark" : "Light";
+      localStorage.setItem("mode", mode);
+    }
+  
+    // Function to set mode based on local storage
+    function setModeFromLocalStorage() {
+      let savedMode = localStorage.getItem("mode");
+      if (savedMode === "Dark") {
+        toggleMode();
+      }
+    }
+  
+    // Add event listener to the switch
+    let switchInput = document.querySelector(".bTn");
+    switchInput.addEventListener("change", function() {
+      toggleMode();
+    });
+  
+    // Set mode from local storage on page load
+    setModeFromLocalStorage();
+  
+    // Check the switch based on the initial mode
+    let savedMode = localStorage.getItem("mode");
+    switchInput.checked = savedMode === "Dark";
+  });
+  
