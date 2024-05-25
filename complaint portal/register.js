@@ -331,8 +331,9 @@ function createAccount() {
     // Send confirmation email to the user
     sendConfirmationEmail(newEmailOrPhone, newUsername, newPassword);
 
-    // Redirect to the login page
-    window.location.href = 'index.html'; // Replace 'index.html' with the appropriate login page
+    setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1000);
 }
 
 function sendConfirmationEmail(email, username, password) {
