@@ -138,12 +138,18 @@ input::placeholder {
     #phone-auth-container,
     #otp-verification-container,
     #password-fields {
-        width: 100%;
+        width: 90%;
         padding: 15px;
     }
 
     input[type="text"],
     input[type="password"] {
         width: calc(100% - 30px);
+    }
+    header{
+        height: 142px
+    }
+    h2{
+        margin-top: -3px;
     }
 }
