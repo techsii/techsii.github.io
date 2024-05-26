@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP SMS using Firebase</title>
+    <!-- Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+    <!-- Your Firebase config -->
+    <script src="SmS.js"></script>
+    <link rel="stylesheet" href="SmS.css">
+</head>
+<body> 
+
+<header>
+    <h2>Create Account Using SMS</h2>
+</header>
+
+<div id="phone-auth-container">
+    <input type="text" id="phone-number" placeholder="Enter phone number">
+    <!-- Google reCAPTCHA -->
+    <div id="recaptcha-container"></div>
+    <button onclick="sendOTP()">Send OTP</button>
+</div>
+
+<div id="otp-verification-container" style="display:none;">
+    <input type="text" id="verification-code" placeholder="Enter OTP">
+    <button onclick="verifyOTP()">Verify OTP</button>
+    <p id="timer">Time left: 120 seconds</p> <!-- Placeholder for displaying timer countdown -->
+</div>
+
+<!-- Password fields for creating account -->
+<div id="password-fields" style="display: none;">
+    <div style="position: relative;">
+        <input type="password" id="new-password" placeholder="New Password">
+        <button class="eye-button" type="button" onclick="toggleNewPasswordVisibility()">
+            <img class="eye-icon" src="eyehide.png" alt="Hide Password" id="toggle-new-password">
+        </button>
+    </div>
+    <div style="position: relative;">
+        <input type="password" id="confirm-password" placeholder="Confirm Password">
+        <button class="eye-button" type="button" onclick="toggleConfirmPasswordVisibility()">
+            <img class="eye-icon" src="eyehide.png" alt="Hide Password" id="toggle-confirm-password">
+        </button>
+    </div>
+    <button class="hover" type="button" onclick="createAccount()">Create Account</button>
+</div>
+
+</body>
+</html>

@@ -144,42 +144,49 @@ function verifyOTPEmail() {
 
 
 /*--------------------------------------SMS OTP Functions--------------------------------------*/
+/*--------------------------------------SMS OTP Functions--------------------------------------*/
 function sendOTPSMS() {
     const api_key = "880a60a1-0c46-11ef-8cbb-0200cd936042";
     let phoneOrEmail = document.getElementById("phone-email").value;
     let formattedPhoneNumber = phoneOrEmail.startsWith("+91") ? phoneOrEmail : "+91" + phoneOrEmail;
-    
-    // Check if the email/phone already exists in localStorage
-    const existingEmailOrPhone = localStorage.getItem(phoneOrEmail);
-    
-    // If the email/phone already exists, show error message and return
-    if (existingEmailOrPhone) {
-        alert('email/phone already exists. Please use a different one.');
-        return;
-    }
 
-    let url = `https://2factor.in/API/V1/${api_key}/SMS/${formattedPhoneNumber}/AUTOGEN`;
-    
-    fetch(url)
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then((data) => {
-        console.log("API response:", data);
-        if (data.Status === "Success") {
-            session_id = data.Details; // Store session_id for later use
-            alert("OTP sent successfully via SMS");
-        } else {
-            throw new Error(data.Details);
-        }
-    })
-    .catch((err) => {
-        console.error("Error sending OTP:", err);
-        alert("Error sending OTP. Please try again later.");
-    });
+    // Check if the email/phone already exists in the Firebase database
+    database.ref('userCredentials').orderByChild('username').equalTo(phoneOrEmail)
+        .once('value')
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                // Username (email/phone) already exists
+                alert('Email/phone already exists. Please use a different one.');
+                return;
+            } else {
+                let url = `https://2factor.in/API/V1/${api_key}/SMS/${formattedPhoneNumber}/AUTOGEN`;
+                
+                fetch(url)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("API response:", data);
+                    if (data.Status === "Success") {
+                        session_id = data.Details; // Store session_id for later use
+                        alert("OTP sent successfully via SMS");
+                    } else {
+                        throw new Error(data.Details);
+                    }
+                })
+                .catch((err) => {
+                    console.error("Error sending OTP:", err);
+                    alert("Error sending OTP. Please try again later.");
+                });
+            }
+        })
+        .catch((error) => {
+            console.error('Error checking username existence:', error);
+            alert('An error occurred. Please try again later.');
+        });
 }
 
 
@@ -240,7 +247,6 @@ function sendOTP() {
     }
 }
 
-// Function to toggle between email and SMS verify buttons based on OTP delivery method selection
 function toggleVerifyButton() {
     var deliveryMethod = document.getElementById("otp-delivery-method").value;
     var emailVerifyBtn = document.getElementById("verify-otp-email-btn");
@@ -255,12 +261,12 @@ function toggleVerifyButton() {
         emailVerifyBtn.style.display = "none";
         smsVerifyBtn.style.display = "block";
         dualVerifyBtn.style.display = "none";
-    } else if (deliveryMethod === "dual") {
-        emailVerifyBtn.style.display = "none";
-        smsVerifyBtn.style.display = "none";
-        dualVerifyBtn.style.display = "block";
+    } else if (deliveryMethod === "NameSMS") {
+        // Redirect to "SmS.html" when "Name SmS" is selected
+        window.location.href = "SmS.html";
     }
 }
+
 
 // Add event listener to the "Verify OTP (SMS)" button
 document.getElementById("verify-otp-sms-btn").addEventListener("click", verifyOTPSMS);

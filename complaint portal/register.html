@@ -40,11 +40,11 @@
   <div id="create-account-container" class="form-container">
     <h2>Create Account</h2>
     <form id="create-account-form">
-        <!-- Input fields for username, OTP delivery method, phone/email, and send OTP button -->
-        <select id="otp-delivery-method" onchange="toggleVerifyButton()">
-          <option value="email">Email</option>
-          <option value="sms">SMS</option>
-        </select>
+      <select id="otp-delivery-method" onchange="toggleVerifyButton()">
+        <option value="email">Email</option>
+        <option value="sms">Phone Call</option>
+        <option value="NameSMS">SmS</option>
+      </select>
         <input type="text" id="new-username" placeholder="Enter your full name" required >
         <input type="email" id="phone-email" placeholder="Phone number / Email" required >
         <button class="hover" id="send-otp-btn" type="button" onclick="sendOTP()">Send OTP</button>
@@ -52,9 +52,9 @@
         <div id="timer"></div>
         <input type="text" id="otp" placeholder="Enter OTP" required>
         <!-- Email verify button -->
-        <button class="hover" id="verify-otp-email-btn" type="button" style="display: none;" onclick="verifyOTPEmail()">Verify OTP (Email)</button>
+        <button class="hover" id="verify-otp-email-btn" type="button" style="display: none;" onclick="verifyOTPEmail()">Verify OTP</button>
         <!-- SMS verify button -->
-        <button class="hover" id="verify-otp-sms-btn" type="button" style="display: none;" onclick="verifyOTPSMS()">Verify OTP (SMS)</button>
+        <button class="hover" id="verify-otp-sms-btn" type="button" style="display: none;" onclick="verifyOTPSMS()">Verify OTP</button>
   
           <!------------------------------------------eye button--------------------------------------->
           <div id="password-fields" style="display: none;">
