@@ -92,9 +92,9 @@ function sendOTPEmail() {
                 `;
 
                 Email.send({
-                    SecureToken: "0a37ead9-1e6d-46da-aea3-d540b17b0005",
+                    SecureToken: "84b376b9-c826-434f-a560-e92c65aa608d",
                     To: newEmailOrPhone,
-                    From: "info.complainportal@gmail.com",
+                    From: "neelbhattacharjee09@gmail.com",
                     Subject: "OTP Verification",
                     Body: emailBody,
                     ContentType: 'text/html; charset=utf-8' // Set content type to HTML
@@ -362,9 +362,9 @@ function sendConfirmationEmail(email, username, password) {
 
 
     Email.send({
-        SecureToken: "0a37ead9-1e6d-46da-aea3-d540b17b0005",
+        SecureToken: "84b376b9-c826-434f-a560-e92c65aa608d",
         To: email,
-        From: "info.complainportal@gmail.com",
+        From: "neelbhattacharjee09@gmail.com",
         Subject: "Registration Confirmation",
         Body: emailBody,
         ContentType: 'text/html; charset=utf-8' // Set content type to HTML
