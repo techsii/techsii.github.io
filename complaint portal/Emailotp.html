@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Email OTP Authentication</title>
+  <link rel="stylesheet" href="Email.css">
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Sign In with Email link </h2>
+    <div>
+      <input type="email" id="email" placeholder="Enter your email" required />
+      <button id="send-otp">Send OTP</button>
+    </div>
+    <div class="alert" id="alert">Error message</div>
+    <div class="alert success" id="success">Success message</div>
+  </div>
+
+  <script src="Email.js"></script>
+</body>
+</html>

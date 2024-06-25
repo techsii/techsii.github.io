@@ -264,6 +264,9 @@ function toggleVerifyButton() {
     } else if (deliveryMethod === "NameSMS") {
         // Redirect to "SmS.html" when "Name SmS" is selected
         window.location.href = "SmS.html";
+    }else if (deliveryMethod === "Namelink") {
+        // Redirect to "SmS.html" when "Name SmS" is selected
+        window.location.href = "Emailotp.html";
     }
 }
 
