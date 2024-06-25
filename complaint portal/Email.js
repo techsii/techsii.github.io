@@ -17,7 +17,7 @@ const firebaseConfig = {
 document.getElementById('send-otp').addEventListener('click', () => {
     const email = document.getElementById('email').value;
     auth.sendSignInLinkToEmail(email, {
-      url: 'http://127.0.0.1:5500/Create%20account.html',
+      url: 'http://127.0.0.1:5500/techsii.github.io/complaint%20portal/Create%20account.html',
       handleCodeInApp: true
     }).then(() => {
       window.localStorage.setItem('emailForSignIn', email);
