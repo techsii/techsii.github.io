@@ -1,14 +1,14 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyAOHKfARpobVRd7QLY1BcQMyXjMg6eSDMI",
-    authDomain: "profile-database-fa673.firebaseapp.com",
-    databaseURL: "https://profile-database-fa673-default-rtdb.firebaseio.com",
-    projectId: "profile-database-fa673",
-    storageBucket: "profile-database-fa673.appspot.com",
-    messagingSenderId: "349540949644",
-    appId: "1:349540949644:web:7b99ddd5acac93588265a9",
-    measurementId: "G-V34HW6CGGK"
-  };
+  apiKey: "AIzaSyD85I5rIPzsfZ7JX_LAachui0iwxzDy98s",
+  authDomain: "online-complain-portal.firebaseapp.com",
+  databaseURL: "https://online-complain-portal-default-rtdb.firebaseio.com",
+  projectId: "online-complain-portal",
+  storageBucket: "online-complain-portal.appspot.com",
+  messagingSenderId: "1019541538165",
+  appId: "1:1019541538165:web:9c8fd57d8149766a18ff3c",
+  measurementId: "G-3RC1F8674D"
+};
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
